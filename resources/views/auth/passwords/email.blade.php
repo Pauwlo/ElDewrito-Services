@@ -2,6 +2,10 @@
 
 @section('title', 'Reset password')
 
+@section('scripts')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @section('content')
 <div class="login__block active">
     <div class="login__block__header">
@@ -37,6 +41,16 @@
     
                 @error('email')
                     <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE') }}"></div>
+
+                @error ('g-recaptcha-response')
+                    <span class="invalid-feedback" style="display:block">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror

@@ -2,6 +2,10 @@
 
 @section('title', 'Register')
 
+@section('scripts')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @section('content')
 <div class="login__block active">
     <div class="login__block__header">
@@ -55,6 +59,16 @@
 
         <div class="form-group form-group--centered">
             <input type="password" name="password_confirmation" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Confirm Password') }}" autocomplete="new-password" required>
+        </div>
+
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="{{ env('RECAPTCHA_SITE') }}"></div>
+
+            @error ('g-recaptcha-response')
+                <span class="invalid-feedback" style="display:block">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-theme btn--icon">
