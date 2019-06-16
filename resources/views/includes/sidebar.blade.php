@@ -31,6 +31,17 @@
 
         <ul class="navigation">
             <li{!! (Route::currentRouteName() == 'home') ? ' class="navigation__active"' : '' !!}><a href="{{ route('home') }}"><i class="zwicon-home"></i> {{ __('Home') }}</a></li>
+
+            <li class="navigation__sub">
+                <a href=""><i class="zwicon-web"></i> {{ __('External links') }}</a>
+
+                <ul>
+                    <li><a href="https://www.reddit.com/r/HaloOnline/" target="_blank">Halo Online Subreddit</a></li>
+                    <li><a href="https://blog.eldewrito.com/" target="_blank">ElDewrito Blog</a></li>
+                    <li><a href="http://halostats.click/" target="_blank">Halostats</a></li>
+                    <li><a href="https://pauwlo.fr/" target="_blank">Pauwlo.fr</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </aside>
