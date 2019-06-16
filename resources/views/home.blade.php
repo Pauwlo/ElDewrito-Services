@@ -1,26 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+<div class="content__inner">
+    
+    @include('includes.alert')
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <header class="content__title">
+        <h1>Home</h1>
+    </header>
 
-                    @guest
-                        Welcome, guest!
-                    @else
-                        Welcome, <b>{{ Auth::user()->name }}</b>!
-                    @endguest
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Welcome to ElDewrito Services!</h4>
+            <h6 class="card-subtitle">Here I will do some cool (and maybe useful) stuff for ElDewrito.</h6>
         </div>
     </div>
 </div>

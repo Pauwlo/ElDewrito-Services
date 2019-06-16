@@ -1,47 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+
+@section('title', 'Reset password')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<div class="login__block active">
+    <div class="login__block__header">
+        <i class="zwicon-user-circle"></i>
+        {{ __('Reset your password') }}
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <div class="actions actions--inverse login__block__actions">
+            <div class="dropdown">
+                <i data-toggle="dropdown" class="zwicon-more-h actions__item"></i>
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
                 </div>
             </div>
         </div>
     </div>
+
+    @if (session('status'))
+        <div class="alert alert-success m-0" role="alert">
+            {{ session('status') }}
+        </div>
+
+        <div class="login__block__body">
+            <a class="btn btn-outline-theme" href="{{ route('login') }}">{{ __('Return to login') }}</a>
+        </div>
+    @else
+        <form method="POST" action="{{ route('password.email') }}" class="login__block__body">
+            @csrf
+    
+            <div class="form-group">
+                <input type="email" name="email" class="form-control text-center @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="{{ __('E-Mail Address') }}" autocomplete="email" required autofocus>
+    
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+    
+            <button type="submit" class="btn btn-theme btn--icon">
+                <i class="zwicon-checkmark" title="{{ __('Send password reset link') }}"></i>
+            </button>
+        </form>
+    @endif
 </div>
 @endsection
