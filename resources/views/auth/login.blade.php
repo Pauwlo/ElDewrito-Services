@@ -2,6 +2,8 @@
 
 @section('title', 'Login')
 
+@section('description', 'Log into your ElDewrito Services account.')
+
 @section('content')
 <div class="login__block active">
     <div class="login__block__header">

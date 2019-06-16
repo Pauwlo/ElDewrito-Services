@@ -2,6 +2,8 @@
 
 @section('title', 'New password')
 
+@section('robots', 'noindex, nofollow')
+
 @section('content')
 <div class="login__block active">
     <div class="login__block__header">

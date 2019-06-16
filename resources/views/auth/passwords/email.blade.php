@@ -2,6 +2,8 @@
 
 @section('title', 'Reset password')
 
+@section('description', 'If you forgot your password, you can recover it by filling this form.')
+
 @section('scripts')
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

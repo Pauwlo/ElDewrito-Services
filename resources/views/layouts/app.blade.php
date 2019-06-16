@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
+    @if ($__env->yieldContent('description'))<meta name="description" content="@yield('description')">@endif
+    @if ($__env->yieldContent('robots'))<meta name="robots" content="@yield('robots')">@endif
 
     @if ($__env->yieldContent('title'))
         <title>@yield('title') – {{ config('app.name', 'ElDewrito Services') }}</title>

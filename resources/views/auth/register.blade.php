@@ -2,6 +2,8 @@
 
 @section('title', 'Register')
 
+@section('description', 'Create your account on ElDewrito Services.')
+
 @section('scripts')
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

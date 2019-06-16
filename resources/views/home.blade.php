@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('description', 'Here I will do some cool (and maybe useful) stuff for ElDewrito.')
+
 @section('content')
 <div class="content__inner">
     
