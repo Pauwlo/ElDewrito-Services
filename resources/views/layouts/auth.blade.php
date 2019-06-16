@@ -24,6 +24,13 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65644846-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-65644846-4');
+    </script>
     @yield('scripts')
 </head>
 
