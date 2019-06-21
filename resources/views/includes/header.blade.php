@@ -8,7 +8,7 @@
     </div>
 
     <ul class="top-nav">
-        <li>
+        <li id="fullscreen-container" style="display:none">
             <a href="#" data-action="fullscreen" title="{{ __('Toggle fullscreen') }}"><i class="zwicon-expand"></i></a>
         </li>
 
