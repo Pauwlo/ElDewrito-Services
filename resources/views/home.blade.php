@@ -12,7 +12,7 @@
     </header>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Welcome to ElDewrito Services!</h4>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{!! __('misc.latest_subreddit_posts') !!}</h4>
