@@ -39,7 +39,7 @@
                     <li><a href="https://www.reddit.com/r/HaloOnline/" target="_blank">Halo Online Subreddit</a></li>
                     <li><a href="https://blog.eldewrito.com/" target="_blank">ElDewrito Blog</a></li>
                     <li><a href="http://halostats.click/" target="_blank">Halostats</a></li>
-                    <li><a href="https://pauwlo.fr/" target="_blank">Pauwlo.fr</a></li>
+                    <li><a href="https://www.pauwlo.fr/" target="_blank">Pauwlo.fr</a></li>
                 </ul>
             </li>
         </ul>

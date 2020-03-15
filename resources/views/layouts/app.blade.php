@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,13 +20,16 @@
     <link rel="stylesheet" href="{{ asset('vendors/zwicon/zwicon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/overlay-scrollbars/OverlayScrollbars.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('vendors/overlay-scrollbars/jquery.overlayScrollbars.min.js') }}" defer></script>
+    @yield('scripts')
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65644846-4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -37,27 +41,25 @@
 
 <body data-theme="1">
 
-    @include('includes.ie-warning')
+    <div id="app">
 
-    <main class="main">
-        @include('includes.page-loader')
+        @include('includes.ie-warning')
 
-        @include('includes.header')
+        <main class="main">
+            @include('includes.page-loader')
 
-        @include('includes.sidebar')
-        @include('includes.theme-switch')
+            @include('includes.header')
 
-        <section class="content">
+            @include('includes.sidebar')
+            @include('includes.theme-switch')
 
-            @yield('content')
+            <section class="content">
 
-        </section>
-    </main>
+                @yield('content')
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-    <script src="{{ asset('vendors/overlay-scrollbars/jquery.overlayScrollbars.min.js') }}"></script>
-    <script src="{{ asset('js/app.min.js') }}"></script>
-    @yield('scripts')
+            </section>
+        </main>
+        
+    </div>
 </body>
 </html>

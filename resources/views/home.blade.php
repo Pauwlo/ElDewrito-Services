@@ -33,6 +33,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
-<script src="{{ asset('js/subreddit-parser.min.js') }}"></script>
+<script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js" defer></script>
+<script src="{{ asset('js/subreddit-parser.js') }}" defer></script>
 @endsection

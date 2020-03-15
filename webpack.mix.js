@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.styles([
-       'resources/css/template.min.css'
-    ], 'public/css/app.min.css')
-   .js('resources/js/template.min.js', 'public/js/app.min.js')
-   .js('resources/js/subreddit-parser.js', 'public/js/subreddit-parser.min.js')
+mix.js('resources/js/app.js', 'public/js/app.js')
+   .js('resources/js/subreddit-parser.js', 'public/js/subreddit-parser.js')
+   .styles([
+      'resources/css/template.min.css',
+   ], 'public/css/app.css');
