@@ -43,10 +43,18 @@ class ProfileController extends Controller
             'email' => "required|email|unique:users,email,$user->id|max:255",
         ]);
 
+        $oldEmail = $user->email;
+
         $user->update(request([
             'name',
             'email',
         ]));
+
+        if ($user->email != $oldEmail)
+        {
+            $user->setEmailAsUnverified();
+            $user->sendEmailVerificationNotification();
+        }
 
         return view('profile', compact('user'));
     }

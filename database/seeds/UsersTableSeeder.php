@@ -16,6 +16,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'example@domain.com',
             'password' => Hash::make('changeme')
-        ]);
+        ])->markEmailAsVerified();
     }
 }

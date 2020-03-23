@@ -5,6 +5,8 @@
 @section('content')
 <div class="content__inner">
 
+    @include('includes.verify-email')
+
     @include('includes.alert')
 
     <header class="content__title">

@@ -12,8 +12,8 @@
                 <div class="user__info user__info--hover" data-toggle="dropdown">
                     <img class="user__img" src="{{ asset('img/avatars/default.png') }}" alt="{{ __('Avatar') }}">
                     <div>
-                        <div class="user__name">{{ Auth::user()->name }}</div>
-                        <div class="user__email">{{ Auth::user()->email }}</div>
+                        <div class="user__name">{{ auth()->user()->name }}</div>
+                        <div class="user__email">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 

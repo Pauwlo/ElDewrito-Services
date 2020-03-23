@@ -7,6 +7,8 @@
 @section('content')
 <div class="content__inner content__inner--sm">
 
+    @include('includes.verify-email')
+
     <header class="content__title">
         <h1>{{ __('Profile') }}</h1>
     </header>
