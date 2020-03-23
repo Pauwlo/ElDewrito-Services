@@ -18,6 +18,8 @@
                 </div>
 
                 <div class="dropdown-menu">
+                    <a href="{{ route('profile') }}" class="dropdown-item">{{ __('Profile') }}</a>
+                    
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
