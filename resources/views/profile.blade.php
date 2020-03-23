@@ -46,6 +46,18 @@
                         @enderror
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="discord">{{ __('Discord') }}</label>
+                        <input type="text" name="discord" id="discord" class="form-control @error('discord') is-invalid @enderror" placeholder="{{ $user->discord ?? 'John#0117' }}" value="{{ old('discord', $user->discord) }}" minlength="7" maxlength="37">
+                        @error('discord')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
             </div>
 
             <div class="clearfix"></div>

@@ -41,6 +41,7 @@ class ProfileController extends Controller
         $request->validate([
             'name'  => 'required|string|max:32',
             'email' => "required|email|unique:users,email,$user->id|max:255",
+            'discord' => 'nullable|string|min:7|max:37'
         ]);
 
         $oldEmail = $user->email;
@@ -48,6 +49,7 @@ class ProfileController extends Controller
         $user->update(request([
             'name',
             'email',
+            'discord',
         ]));
 
         if ($user->email != $oldEmail)
