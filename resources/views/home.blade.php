@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="content__inner">
-    
+
     @include('includes.alert')
 
     <header class="content__title">

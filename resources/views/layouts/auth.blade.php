@@ -27,7 +27,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65644846-4"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-65644846-4" async></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -35,7 +35,6 @@
         gtag('config', 'UA-65644846-4');
     </script>
 </head>
-
 <body data-theme="1">
 
     <div id="app" class="login">
@@ -46,5 +45,4 @@
 
     @include('includes.ie-warning')
 </body>
-
 </html>
