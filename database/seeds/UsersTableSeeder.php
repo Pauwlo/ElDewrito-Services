@@ -13,9 +13,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Admin',
-            'email' => 'example@domain.com',
-            'password' => Hash::make('changeme')
+            'name'     => 'Admin',
+            'email'    => 'example@domain.com',
+            'role'     => 2,
+            'password' => Hash::make('changeme'),
         ])->markEmailAsVerified();
     }
 }
