@@ -8,14 +8,14 @@
 <div class="login__block active">
     <div class="login__block__header">
         <i class="zwicon-user-circle"></i>
-        {{ __('Register') }}
+        {{ __('Create your account') }}
 
         <div class="actions actions--inverse login__block__actions">
             <div class="dropdown">
                 <i data-toggle="dropdown" class="zwicon-more-h actions__item"></i>
                 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('Log in') }}</a>
                     <a class="dropdown-item" href="{{ route('password.request') }}">{{ __('Reset password') }}</a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group form-group--centered">
-            <input type="password" name="password" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" autocomplete="new-password" required>
+            <input type="password" name="password" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" minlength="8" autocomplete="new-password" required>
 
             @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group form-group--centered">
-            <input type="password" name="password_confirmation" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Confirm Password') }}" autocomplete="new-password" required>
+            <input type="password" name="password_confirmation" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Confirm Password') }}" minlength="8" autocomplete="new-password" required>
         </div>
 
         <button type="submit" class="btn btn-theme btn--icon">

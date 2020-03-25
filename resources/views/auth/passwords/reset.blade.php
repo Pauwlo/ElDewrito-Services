@@ -15,7 +15,7 @@
                 <i data-toggle="dropdown" class="zwicon-more-h actions__item"></i>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('Log in') }}</a>
                     <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
                 </div>
             </div>

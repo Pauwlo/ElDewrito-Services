@@ -16,6 +16,11 @@
     <div class="card new-contact">
         <div class="new-contact__header">
             <img src="{{ asset('img/avatars/default.png') }}" class="new-contact__img" alt="{{ $user->name }}">
+
+            <p class="mt-3 mb-0">
+                <strong>{{ $user->name }}</strong><br>
+                <span class="text-muted">{{ $user->roleToString() }}</span>
+            </p>
         </div>
 
         <form method="POST" action="{{ route('profile') }}" class="card-body">
@@ -56,6 +61,15 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="discord">{{ __('Password') }}</label>
+                        <p>
+                            <a href="{{ route('password.change') }}" class="btn btn-theme-dark">{{ __('Change password') }}</a>
+                        </p>
                     </div>
                 </div>
             </div>

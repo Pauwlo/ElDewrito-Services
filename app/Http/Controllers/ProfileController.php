@@ -60,4 +60,46 @@ class ProfileController extends Controller
 
         return view('profile', compact('user'));
     }
+
+    /**
+     * Display change password form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showChangePassword()
+    {
+        return view('auth.passwords.change');
+    }
+
+    /**
+     * Update user password.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request)
+    {
+        $user = auth()->user();
+
+        if (!\Hash::check(request('current-password'), $user->password)) {
+            return redirect()->back()->withErrors([
+                'current-password' => __('Your current password is incorrect.')
+            ]);
+        }
+
+        $request->validate([
+            'current-password' => 'required|string|min:8',
+            'password'         => "required|string|min:8|confirmed"
+        ]);
+
+        if (request('current-password') === request('password')) {
+            return redirect()->back()->withErrors([
+                'current-password' => __('Your new password can\'t be the same as your current password.')
+            ]);
+        }
+
+        $user->password = \Hash::make(request('password'));
+        $user->save();
+
+        return view('profile', compact('user'));
+    }
 }

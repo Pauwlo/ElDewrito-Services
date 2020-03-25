@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login')
+@section('title', 'Log in')
 
 @section('description', 'Log into your ElDewrito Services account.')
 
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            <input type="password" name="password" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" autocomplete="current-password" required>
+            <input type="password" name="password" class="form-control text-center @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" minlength="8" autocomplete="current-password" required>
 
             @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
         </div>
 
         <button type="submit" class="btn btn-theme btn--icon">
-            <i class="zwicon-checkmark" title="{{ __('Login') }}"></i>
+            <i class="zwicon-checkmark" title="{{ __('Log in') }}"></i>
         </button>
     </form>
 </div>
