@@ -9,6 +9,8 @@
 
     @include('includes.verify-email')
 
+    @include('includes.alert')
+
     <header class="content__title">
         <h1>{{ __('Profile') }}</h1>
     </header>

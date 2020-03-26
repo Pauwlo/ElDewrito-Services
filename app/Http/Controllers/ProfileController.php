@@ -58,7 +58,7 @@ class ProfileController extends Controller
             $user->sendEmailVerificationNotification();
         }
 
-        return view('profile', compact('user'));
+        return redirect()->route('profile')->with('status', __('Profile updated!'));
     }
 
     /**
@@ -100,6 +100,6 @@ class ProfileController extends Controller
         $user->password = \Hash::make(request('password'));
         $user->save();
 
-        return view('profile', compact('user'));
+        return redirect()->route('profile')->with('status', __('Password changed!'));
     }
 }
