@@ -3,21 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="referrer" content="no-referrer">
     <meta name="msapplication-TileColor" content="#2b5797">
     <meta name="theme-color" content="#ffffff">
-    @if ($__env->yieldContent('description'))<meta name="description" content="@yield('description')">@endif
-    @if ($__env->yieldContent('robots'))<meta name="robots" content="@yield('robots')">@endif
+    <meta name="robots" content="noindex, nofollow">
 
-    @if ($__env->yieldContent('title'))
-        <title>@yield('title') – {{ config('app.name', 'ElDewrito Services') }}</title>
-    @else
-        <title>{{ config('app.name', 'ElDewrito Services') }}</title>
-    @endif
+    <title>{{ __('Error') }} @yield('code') – {{ config('app.name', 'ElDewrito Services') }}</title>
 
     <link rel="stylesheet" href="{{ asset('vendors/zwicon/zwicon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,11 +29,24 @@
 </head>
 <body data-theme="1">
 
-    @include('includes.ie-warning')
+    <div id="app">
 
-    <div id="app" class="login">
+        @include('includes.ie-warning')
 
-        @yield('content')
+        <section class="error">
+            <div class="error__inner">
+                <h1>@yield('code')</h1>
+                <h2>@yield('name')</h2>
+                <p>
+                    @yield('message')<br>
+                    If you believe this is a bug, don't hesitate to report it.
+                </p>
+                <p class="mb-0">
+                    <a href="javascript:window.history.back()" class="btn btn-theme-dark btn--icon" title="{{ __('Go back') }}"><i class="zwicon-arrow-left"></i></a>
+                    <a href="{{ route('home') }}" class="btn btn-theme-dark btn--icon" title="{{ __('Go home') }}"><i class="zwicon-home"></i></a>
+                </p>
+            </div>
+        </section>
 
     </div>
 </body>

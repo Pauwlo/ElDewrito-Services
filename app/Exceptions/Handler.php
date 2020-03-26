@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +51,32 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($this->shouldHideError($exception)) {
+            return response()->view('errors.404', [], 404);
+        }
+
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Determine if the error should be hidden.
+     *
+     * @param  \Throwable  $exception
+     * @return bool
+     */
+    private function shouldHideError(Throwable $exception)
+    {
+        if (app()->environment() != "production")
+            return false;
+        
+        $publicErrors = [404, 419, 429, 500, 503];
+
+        if ($exception instanceof HttpException && in_array($exception->getStatusCode(), $publicErrors))
+            return false;
+        
+        if (!$exception instanceof HttpException)
+            return false;
+        
+        return true;
     }
 }
