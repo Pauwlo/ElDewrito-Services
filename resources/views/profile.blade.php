@@ -16,6 +16,15 @@
     </header>
 
     <form method="POST" action="{{ route('profile') }}" enctype="multipart/form-data" class="card new-contact">
+        <div class="actions">
+            <div class="dropdown actions__item">
+                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="{{ route('profile.delete.confirmation') }}" class="dropdown-item text-danger">{{ __('Delete account') }}</a>
+                </div>
+            </div>
+        </div>
+        
         @csrf
         @method('PUT')
 

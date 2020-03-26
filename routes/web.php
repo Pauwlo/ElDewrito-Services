@@ -8,3 +8,5 @@ Route::put('password/change', 'ProfileController@changePassword');
 
 Route::get('profile', 'ProfileController@index')->name('profile');
 Route::put('profile', 'ProfileController@update');
+Route::delete('profile', 'ProfileController@delete')->name('profile.delete');
+Route::get('profile/delete', 'ProfileController@showDeleteConfirmation')->name('profile.delete.confirmation');

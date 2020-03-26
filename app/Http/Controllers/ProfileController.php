@@ -101,16 +101,16 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
+        $request->validate([
+            'current-password' => 'required|string|min:8',
+            'password'         => 'required|string|min:8|confirmed',
+        ]);
+
         if (!\Hash::check(request('current-password'), $user->password)) {
             return redirect()->back()->withErrors([
                 'current-password' => __('Your current password is incorrect.')
             ]);
         }
-
-        $request->validate([
-            'current-password' => 'required|string|min:8',
-            'password'         => "required|string|min:8|confirmed"
-        ]);
 
         if (request('current-password') === request('password')) {
             return redirect()->back()->withErrors([
@@ -122,5 +122,39 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile')->with('status', __('Password changed!'));
+    }
+
+    /**
+     * Display a confirmation dialog before deleting the user account.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showDeleteConfirmation()
+    {
+        return view('delete-account');
+    }
+
+    /**
+     * Delete user account.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'password' => 'required|string|min:8'
+        ]);
+
+        if (!\Hash::check(request('password'), $user->password)) {
+            return redirect()->back()->withErrors([
+                'password' => __('Your current password is incorrect.')
+            ]);
+        }
+
+        $user->delete();
+
+        return redirect()->route('home')->with('status', __('Your account was deleted. You are now logged out.'));
     }
 }
