@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -39,9 +41,10 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         $request->validate([
-            'name'  => 'required|string|max:32',
-            'email' => "required|email|unique:users,email,$user->id|max:255",
-            'discord' => 'nullable|string|min:7|max:37'
+            'name'    => 'required|string|max:32',
+            'email'   => "required|email|unique:users,email,$user->id|max:255",
+            'avatar'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'discord' => 'nullable|string|min:7|max:37',
         ]);
 
         $oldEmail = $user->email;
@@ -56,6 +59,24 @@ class ProfileController extends Controller
         {
             $user->setEmailAsUnverified();
             $user->sendEmailVerificationNotification();
+        }
+
+        if ($request->avatar)
+        {
+            $img = Image::make($request->avatar);
+
+            $img->resize(null, 250, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $dateTime = Carbon::now()->toDateTimeString();
+            $hash = md5($dateTime . $img->__toString());
+            $fileName = $hash . '.' . request('avatar')->getClientOriginalExtension();
+            $path = "/img/avatars/$fileName";
+
+            $img->save(public_path() . $path);
+            $user->avatar = $fileName;
+            $user->save();
         }
 
         return redirect()->route('profile')->with('status', __('Profile updated!'));

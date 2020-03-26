@@ -15,20 +15,28 @@
         <h1>{{ __('Profile') }}</h1>
     </header>
 
-    <div class="card new-contact">
+    <form method="POST" action="{{ route('profile') }}" enctype="multipart/form-data" class="card new-contact">
+        @csrf
+        @method('PUT')
+
         <div class="new-contact__header">
-            <img src="{{ asset('img/avatars/default.png') }}" class="new-contact__img" alt="{{ $user->name }}">
+            <label for="avatar" class="zwicon-camera new-contact__upload" title="{{ __('Change avatar') }}"></label>
+            <input type="file" name="avatar" id="avatar" class="d-none">
+
+            <img src="{{ asset('img/avatars/' . ($user->avatar ?? 'default.png')) }}" class="new-contact__img" alt="{{ $user->name }}">
 
             <p class="mt-3 mb-0">
                 <strong>{{ $user->name }}</strong><br>
                 <span class="text-muted">{{ $user->roleToString() }}</span>
+                @error('avatar')
+                    <strong class="invalid-feedback d-block">
+                        {{ $message }}
+                    </strong>
+                @enderror
             </p>
         </div>
 
-        <form method="POST" action="{{ route('profile') }}" class="card-body">
-            @csrf
-            @method('PUT')
-
+        <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -81,7 +89,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">{{ __('Save profile') }}</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
 @endsection

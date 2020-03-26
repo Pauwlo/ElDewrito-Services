@@ -10,7 +10,7 @@
                 </div>
             @else
                 <div class="user__info user__info--hover" data-toggle="dropdown">
-                    <img class="user__img" src="{{ asset('img/avatars/default.png') }}" alt="{{ __('Avatar') }}">
+                    <img class="user__img" src="{{ asset('img/avatars/' . (auth()->user()->avatar ?? 'default.png')) }}" alt="{{ __('Avatar') }}">
                     <div>
                         <div class="user__name">{{ auth()->user()->name }}</div>
                         <div class="user__email">{{ auth()->user()->roleToString() }}</div>
