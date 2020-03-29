@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('discord')->nullable();
             $table->tinyInteger('role')->default(0);
+            $table->tinyInteger('theme')->default(1);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

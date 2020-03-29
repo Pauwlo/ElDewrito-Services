@@ -16,7 +16,13 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'discord', 'password',
+        'name',
+        'email',
+        'avatar',
+        'discord',
+        'role',
+        'theme',
+        'password',
     ];
 
     /**

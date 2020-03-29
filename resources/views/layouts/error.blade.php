@@ -27,7 +27,7 @@
         gtag('config', 'UA-65644846-4');
     </script>
 </head>
-<body data-theme="1">
+<body data-theme="{{ $theme }}">
 
     <div id="app">
 
