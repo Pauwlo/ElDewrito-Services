@@ -22,3 +22,9 @@ Route::namespace('Api')->group(function () {
  * routes\api.php because they might require User
  * authentication, therefore sharing the same session.
  */
+
+Route::namespace('OfficialPlaylists')->group(function () {
+
+    Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.index');
+
+});

@@ -34,6 +34,8 @@
         <ul class="navigation">
             <li{!! (Route::is('home')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('home') }}"><i class="zwicon-home"></i> {{ __('Home') }}</a></li>
 
+            <li{!! (Route::is('official-playlists.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.index') }}"><i class="zwicon-server-stack"></i> {{ __('Official Playlists') }}</a></li>
+
             <li class="navigation__sub">
                 <a href=""><i class="zwicon-web"></i> {{ __('External links') }}</a>
 
