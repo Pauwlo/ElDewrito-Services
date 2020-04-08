@@ -32,7 +32,7 @@
         </div>
 
         <ul class="navigation">
-            <li{!! (Route::currentRouteName() == 'home') ? ' class="navigation__active"' : '' !!}><a href="{{ route('home') }}"><i class="zwicon-home"></i> {{ __('Home') }}</a></li>
+            <li{!! (Route::is('home')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('home') }}"><i class="zwicon-home"></i> {{ __('Home') }}</a></li>
 
             <li class="navigation__sub">
                 <a href=""><i class="zwicon-web"></i> {{ __('External links') }}</a>
