@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Official Playlists – ' . config('app.name', 'ElDewrito Services'))
+@section('title', 'Official Playlists')
 
 @section('description', '')
 
@@ -34,6 +34,7 @@
                                 <p>{{ $playlist->max_players }} {{ __('players') }} · {{ $playlist->vote_mode ? __('Veto') : __('Voting') }} · {{ __('Updated') }} {{ $playlist->updated_at->diffForHumans() }}</p>
                             </div>
                             <div class="actions listview__actions">
+                                <a href="{{ route('official-playlists.ranked.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
                                 <a href="#" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
                                 <a href="#" title="{{ __('Delete playlist') }}"><i class="actions__item zwicon-trash"></i></a>
                             </div>
@@ -62,6 +63,7 @@
                                 <p>{{ $playlist->max_players }} {{ __('players') }} · {{ $playlist->vote_mode ? __('Veto') : __('Voting') }} · {{ __('Updated') }} {{ $playlist->updated_at->diffForHumans() }}</p>
                             </div>
                             <div class="actions listview__actions">
+                                <a href="{{ route('official-playlists.social.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
                                 <a href="#" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
                                 <a href="#" title="{{ __('Delete playlist') }}"><i class="actions__item zwicon-trash"></i></a>
                             </div>

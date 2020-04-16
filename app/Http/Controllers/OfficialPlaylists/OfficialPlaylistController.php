@@ -21,4 +21,32 @@ class OfficialPlaylistController extends Controller
 
         return view('official-playlists.index', compact('rankedPlaylists', 'socialPlaylists'));
     }
+
+    /**
+     * Display the specified ranked official playlist.
+     *
+     * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function showRanked(RankedPlaylist $playlist)
+    {
+        $type = __('Ranked playlist');
+        $title = "$type: $playlist->name";
+
+        return view('official-playlists.show', compact('title', 'type', 'playlist'));
+    }
+
+    /**
+     * Display the specified social official playlist.
+     *
+     * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function showSocial(SocialPlaylist $playlist)
+    {
+        $type = __('Social playlist');
+        $title = "$type: $playlist->name";
+
+        return view('official-playlists.show', compact('title', 'type', 'playlist'));
+    }
 }

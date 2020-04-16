@@ -26,5 +26,7 @@ Route::namespace('Api')->group(function () {
 Route::namespace('OfficialPlaylists')->group(function () {
 
     Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.index');
+    Route::get('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@showRanked')->name('official-playlists.ranked.show');
+    Route::get('official-playlists/social/{playlist}', 'OfficialPlaylistController@showSocial')->name('official-playlists.social.show');
 
 });
