@@ -28,6 +28,7 @@
                         <div class="dropdown actions__item">
                             <i data-toggle="dropdown" class="zwicon-more-h"></i>
                             <div class="dropdown-menu dropdown-menu-right">
+                                <a href="{{ $jsonRoute }}" target="_blank" class="dropdown-item">{{ __('Generate JSON') }}</a>
                                 <a href="{{ $editRoute }}" class="dropdown-item">{{ __('Edit playlist') }}</a>
                                 <a href="{{ $destroyRoute }}" class="dropdown-item text-danger" onclick="event.preventDefault();document.getElementById('delete-playlist-form').submit();">{{ __('Delete playlist') }}</a>
                             </div>

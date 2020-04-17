@@ -34,10 +34,18 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Ranked playlist');
         $title = "$type: $playlist->name";
+        $jsonRoute = route('official-playlists.ranked.json', $playlist);
         $editRoute = route('official-playlists.ranked.edit', $playlist);
         $destroyRoute = route('official-playlists.ranked.destroy', $playlist);
 
-        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute', 'destroyRoute'));
+        return view('official-playlists.show', compact(
+            'playlist',
+            'type',
+            'title',
+            'jsonRoute',
+            'editRoute',
+            'destroyRoute',
+        ));
     }
 
     /**
@@ -50,10 +58,18 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Social playlist');
         $title = "$type: $playlist->name";
+        $jsonRoute = route('official-playlists.social.json', $playlist);
         $editRoute = route('official-playlists.social.edit', $playlist);
         $destroyRoute = route('official-playlists.social.destroy', $playlist);
 
-        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute', 'destroyRoute'));
+        return view('official-playlists.show', compact(
+            'playlist',
+            'type',
+            'title',
+            'jsonRoute',
+            'editRoute',
+            'destroyRoute',
+        ));
     }
 
     /**
@@ -168,5 +184,43 @@ class OfficialPlaylistController extends Controller
 
         return redirect()->route('official-playlists.index')
                          ->with('status', __('Playlist deleted!'));
+    }
+
+    /**
+     * Generate the specified ranked official playlist JSON file.
+     *
+     * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function jsonRanked(RankedPlaylist $playlist)
+    {
+        $output = [
+            'serverName' => $playlist->server_name, 
+            'serverMessage' => $playlist->message,
+            'maxPlayers' => $playlist->max_players,
+            'voteMode' => $playlist->vote_mode,
+            'numberOfVetos' => $playlist->number_of_revotes,
+        ];
+
+        return response()->json($output, 200, [], JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Generate the specified social official playlist JSON file.
+     *
+     * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function jsonSocial(SocialPlaylist $playlist)
+    {
+        $output = [
+            'serverName' => $playlist->server_name, 
+            'serverMessage' => $playlist->message,
+            'maxPlayers' => $playlist->max_players,
+            'voteMode' => $playlist->vote_mode,
+            'numberOfRevotesAllowed' => $playlist->number_of_revotes,
+        ];
+
+        return response()->json($output, 200, [], JSON_PRETTY_PRINT);
     }
 }
