@@ -29,9 +29,14 @@
                             <i data-toggle="dropdown" class="zwicon-more-h"></i>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="{{ $editRoute }}" class="dropdown-item">{{ __('Edit playlist') }}</a>
-                                <a href="#" class="dropdown-item text-danger">{{ __('Delete playlist') }}</a>
+                                <a href="{{ $destroyRoute }}" class="dropdown-item text-danger" onclick="event.preventDefault();document.getElementById('delete-playlist-form').submit();">{{ __('Delete playlist') }}</a>
                             </div>
                         </div>
+
+                        <form method="POST" action="{{ $destroyRoute }}" id="delete-playlist-form" style="display:none">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </div>
 
                     <ul>

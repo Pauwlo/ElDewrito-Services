@@ -35,8 +35,9 @@ class OfficialPlaylistController extends Controller
         $type = __('Ranked playlist');
         $title = "$type: $playlist->name";
         $editRoute = route('official-playlists.ranked.edit', $playlist);
+        $destroyRoute = route('official-playlists.ranked.destroy', $playlist);
 
-        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute'));
+        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute', 'destroyRoute'));
     }
 
     /**
@@ -50,8 +51,9 @@ class OfficialPlaylistController extends Controller
         $type = __('Social playlist');
         $title = "$type: $playlist->name";
         $editRoute = route('official-playlists.social.edit', $playlist);
+        $destroyRoute = route('official-playlists.social.destroy', $playlist);
 
-        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute'));
+        return view('official-playlists.show', compact('playlist', 'type', 'title', 'editRoute', 'destroyRoute'));
     }
 
     /**
@@ -138,5 +140,33 @@ class OfficialPlaylistController extends Controller
 
         return redirect()->route('official-playlists.social.show', $playlist)
                          ->with('status', __('Playlist updated!'));
+    }
+
+    /**
+     * Remove the specified ranked official playlist from storage.
+     *
+     * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyRanked(RankedPlaylist $playlist)
+    {
+        $playlist->delete();
+
+        return redirect()->route('official-playlists.index')
+                         ->with('status', __('Playlist deleted!'));
+    }
+
+    /**
+     * Remove the specified social official playlist from storage.
+     *
+     * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroySocial(SocialPlaylist $playlist)
+    {
+        $playlist->delete();
+
+        return redirect()->route('official-playlists.index')
+                         ->with('status', __('Playlist deleted!'));
     }
 }
