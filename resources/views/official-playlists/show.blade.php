@@ -25,7 +25,13 @@
                     <h4 class="card-title">{{ __('Details') }}</h4>
 
                     <div class="actions">
-                        <a href="#" class="actions__item zwicon-trash" title="{{ __('Delete playlist') }}"></a>
+                        <div class="dropdown actions__item">
+                            <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="{{ $editRoute }}" class="dropdown-item">{{ __('Edit playlist') }}</a>
+                                <a href="#" class="dropdown-item text-danger">{{ __('Delete playlist') }}</a>
+                            </div>
+                        </div>
                     </div>
 
                     <ul>
