@@ -42,7 +42,9 @@
                     <ul>
                         <li>Name: {{ $playlist->name }}</li>
                         <li>Server name: {{ $playlist->server_name }}</li>
-                        <li>Message: {{ $playlist->message }}</li>
+                        <li>Message:
+                            <p>{!! nl2br(e($playlist->message)) !!}</p>
+                        </li>
                         <li>Max players: {{ $playlist->max_players }}</li>
                         <li>Vote mode: {{ $playlist->vote_mode ? 'Veto' : 'Voting' }}</li>
                         <li>Number of revotes: {{ $playlist->number_of_revotes }}</li>

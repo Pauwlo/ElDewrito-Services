@@ -50,7 +50,7 @@
 
                 <div class="form-group">
                     <label for="name">{{ __('Message') }}</label>
-                    <input type="text" name="message" id="message" class="form-control @error('message') is-invalid @enderror" placeholder="{{ $playlist->message }}" value="{{ old('message', $playlist->message) }}" required>
+                    <textarea name="message" id="message" class="form-control @error('message') is-invalid @enderror" placeholder="{{ $playlist->message }}" required>{{ old('message', $playlist->message) }}</textarea>
                     
                     @error('message')
                         <div class="invalid-feedback">

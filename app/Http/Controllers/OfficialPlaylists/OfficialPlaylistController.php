@@ -98,7 +98,7 @@ class OfficialPlaylistController extends Controller
         $attributes = [
             'name' => request('name'),
             'server_name' => request('server-name'),
-            'message' => request('message'),
+            'message' => Str::of(request('message'))->replace("\r", ''),
             'max_players' => request('max-players'),
             'vote_mode' => (request('vote-mode') === 'voting') ? 0 : 1,
             'number_of_revotes' => request('number-of-revotes'),
@@ -126,7 +126,7 @@ class OfficialPlaylistController extends Controller
         $attributes = [
             'name' => request('name'),
             'server_name' => request('server-name'),
-            'message' => request('message'),
+            'message' => Str::of(request('message'))->replace("\r", ''),
             'max_players' => request('max-players'),
             'vote_mode' => (request('vote-mode') === 'voting') ? 0 : 1,
             'number_of_revotes' => request('number-of-revotes'),
