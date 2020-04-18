@@ -22,7 +22,7 @@
                     <h4 class="card-title">{{ __('Ranked Playlists') }}</h4>
 
                     <div class="actions">
-                        <a href="#" class="actions__item zwicon-plus" title="{{ __('Add playlist') }}"></a>
+                        <a href="{{ route('official-playlists.create', ['type' => 'ranked']) }}" class="actions__item zwicon-plus" title="{{ __('Create a ranked playlist') }}"></a>
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@
                     <h4 class="card-title">{{ __('Social Playlists') }}</h4>
 
                     <div class="actions">
-                        <a href="#" class="actions__item zwicon-plus" title="{{ __('Add playlist') }}"></a>
+                        <a href="{{ route('official-playlists.create', ['type' => 'social']) }}" class="actions__item zwicon-plus" title="{{ __('Create a social playlist') }}"></a>
                     </div>
                 </div>
 

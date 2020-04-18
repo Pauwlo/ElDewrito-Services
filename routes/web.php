@@ -26,6 +26,8 @@ Route::namespace('Api')->group(function () {
 Route::namespace('OfficialPlaylists')->group(function () {
 
     Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.index');
+    Route::get('official-playlists/create', 'OfficialPlaylistController@create')->name('official-playlists.create');
+    Route::post('official-playlists', 'OfficialPlaylistController@store')->name('official-playlists.store');
 
     Route::get('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@showRanked')->name('official-playlists.ranked.show');
     Route::put('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@updateRanked')->name('official-playlists.ranked.update');

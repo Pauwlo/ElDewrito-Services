@@ -5,6 +5,7 @@ namespace App\Http\Controllers\OfficialPlaylists;
 use App\Http\Controllers\Controller;
 use App\OfficialPlaylists\RankedPlaylist;
 use App\OfficialPlaylists\SocialPlaylist;
+use App\Http\Requests\CreateOfficialPlaylistRequest;
 use App\Http\Requests\UpdateOfficialPlaylistRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -22,6 +23,67 @@ class OfficialPlaylistController extends Controller
         $socialPlaylists = SocialPlaylist::all();
 
         return view('official-playlists.index', compact('rankedPlaylists', 'socialPlaylists'));
+    }
+
+    /**
+     * Show the form for creating a new official playlist.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $defaultServerName = '';
+        $defaultMessage = '';
+        $type = '';
+
+        switch (request('type')) {
+            case 'ranked':
+                $type = 'Ranked';
+                break;
+            case 'social':
+                $type = 'Social';
+                break;
+        }
+
+        if ($type) {
+            $defaultServerName = "$type - ";
+            $defaultMessage = "Thanks for playing on the official $type # server.\n\nType !help in chat for a list of commands.";
+        }
+
+        return view('official-playlists.create', compact(
+            'defaultServerName',
+            'defaultMessage',
+        ));
+    }
+
+    /**
+     * Store a newly created official playlist in storage.
+     *
+     * @param  \App\Http\Requests\CreateOfficialPlaylistRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateOfficialPlaylistRequest $request)
+    {
+        $attributes = [
+            'name' => request('name'),
+            'slug' => Str::slug(request('name') . ' ' . random_int(10000, 99999)),
+            'server_name' => request('server-name'),
+            'message' => Str::of(request('message'))->replace("\r", ''),
+            'max_players' => request('max-players'),
+            'vote_mode' => (request('vote-mode') === 'voting') ? 0 : 1,
+            'number_of_revotes' => request('number-of-revotes'),
+        ];
+
+        $type = request('type');
+
+        if ($type === 'ranked') {
+            $playlist = RankedPlaylist::create($attributes);
+        } else {
+            $playlist = SocialPlaylist::create($attributes);
+        }
+
+        return redirect()->route("official-playlists.$type.show", $playlist)
+                         ->with('status', __('Playlist created!'));
     }
 
     /**
@@ -105,7 +167,7 @@ class OfficialPlaylistController extends Controller
     /**
      * Update the specified ranked official playlist in storage.
      *
-     * @param  \App\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
      * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
      * @return \Illuminate\Http\Response
      */
@@ -133,7 +195,7 @@ class OfficialPlaylistController extends Controller
     /**
      * Update the specified social official playlist in storage.
      *
-     * @param  \App\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
      * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
      * @return \Illuminate\Http\Response
      */

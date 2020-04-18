@@ -72,9 +72,9 @@
 
                 <div class="form-group">
                     <label for="name">{{ __('Vote mode') }}</label>
-                    <select name="vote-mode" id="vote-mode" class="form-control  @error('vote-mode') is-invalid @enderror" required>
-                        <option value="voting"{{ (old('vote-mode') ?? $playlist->vote_mode == 'voting') ? ' selected' : ''}}>{{ __('Voting') }}</option>
-                        <option value="veto"{{ (old('vote-mode') ?? $playlist->vote_mode == 'veto') ? ' selected' : ''}}>{{ __('Veto') }}</option>
+                    <select name="vote-mode" id="vote-mode" class="form-control @error('vote-mode') is-invalid @enderror" required>
+                        <option value="voting"{{ (old('vote-mode') ?? $playlist->vote_mode === 'voting') ? ' selected' : ''}}>{{ __('Voting') }}</option>
+                        <option value="veto"{{ (old('vote-mode') ?? $playlist->vote_mode === 'veto') ? ' selected' : ''}}>{{ __('Veto') }}</option>
                     </select>
                     
                     @error('vote-mode')
