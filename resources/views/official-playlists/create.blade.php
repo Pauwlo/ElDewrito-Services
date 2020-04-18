@@ -24,8 +24,8 @@
 
                 <div class="form-group">
                     <label for="type">{{ __('Type') }}</label>
-                    <select name="type" id="type" class="form-control @error('type') is-invalid @enderror" required>
-                        <option value=""{{ !old('type') && !request('type') ? ' selected' : '' }}>- Select -</option>
+                    <select name="type" id="type" class="select2 form-control @error('type') is-invalid @enderror" data-minimum-results-for-search="-1" data-placeholder="{{ __('- Select -') }}" required>
+                        <option value=""{{ !old('type') && !request('type') ? ' selected' : '' }}></option>
                         <option value="ranked"{{ old('type') ?? request('type') === 'ranked' ? ' selected' : '' }}>{{ __('Ranked') }}</option>
                         <option value="social"{{ old('type') ?? request('type') === 'social' ? ' selected' : '' }}>{{ __('Social') }}</option>
                     </select>
@@ -83,8 +83,8 @@
 
                 <div class="form-group">
                     <label for="name">{{ __('Vote mode') }}</label>
-                    <select name="vote-mode" id="vote-mode" class="form-control @error('vote-mode') is-invalid @enderror" required>
-                        <option value=""{{ !old('vote-mode') ? ' selected' : '' }}>- Select -</option>
+                    <select name="vote-mode" id="vote-mode" class="select2 form-control @error('vote-mode') is-invalid @enderror" data-minimum-results-for-search="-1" data-placeholder="{{ __('- Select -') }}" required>
+                        <option value=""{{ !old('vote-mode') ? ' selected' : '' }}></option>
                         <option value="voting"{{ (old('vote-mode') === 'voting') || (request('type') === 'social') ? ' selected' : '' }}>{{ __('Voting') }}</option>
                         <option value="veto"{{ (old('vote-mode') === 'veto') || (request('type') === 'ranked') ? ' selected' : '' }}>{{ __('Veto') }}</option>
                     </select>
@@ -112,4 +112,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js" defer></script>
 @endsection

@@ -30,4 +30,14 @@ abstract class OfficialPlaylist extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Get the playlist vote mode as string.
+     * 
+     * @return string
+     */
+    public function voteModeToString()
+    {
+        return $this->vote_mode ? 'veto' : 'voting';
+    }
 }

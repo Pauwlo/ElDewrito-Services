@@ -72,9 +72,9 @@
 
                 <div class="form-group">
                     <label for="name">{{ __('Vote mode') }}</label>
-                    <select name="vote-mode" id="vote-mode" class="form-control @error('vote-mode') is-invalid @enderror" required>
-                        <option value="voting"{{ (old('vote-mode') ?? $playlist->vote_mode === 'voting') ? ' selected' : ''}}>{{ __('Voting') }}</option>
-                        <option value="veto"{{ (old('vote-mode') ?? $playlist->vote_mode === 'veto') ? ' selected' : ''}}>{{ __('Veto') }}</option>
+                    <select name="vote-mode" id="vote-mode" class="select2 form-control @error('vote-mode') is-invalid @enderror" data-minimum-results-for-search="-1" required>
+                        <option value="voting"{{ ((old('vote-mode') ?? $playlist->voteModeToString()) === 'voting') ? ' selected' : ''}}>{{ __('Voting') }}</option>
+                        <option value="veto"{{ ((old('vote-mode') ?? $playlist->voteModeToString()) === 'veto') ? ' selected' : ''}}>{{ __('Veto') }}</option>
                     </select>
                     
                     @error('vote-mode')
@@ -100,4 +100,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js" defer></script>
 @endsection

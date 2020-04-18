@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/zwicon/zwicon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/overlay-scrollbars/OverlayScrollbars.min.css') }}">
+    @yield('styles')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
