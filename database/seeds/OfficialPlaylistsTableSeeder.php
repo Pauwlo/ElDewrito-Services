@@ -3,6 +3,7 @@
 use App\OfficialPlaylists\Map;
 use App\OfficialPlaylists\SocialPlaylist;
 use App\OfficialPlaylists\RankedPlaylist;
+use App\OfficialPlaylists\Variant;
 use Illuminate\Database\Seeder;
 
 class OfficialPlaylistsTableSeeder extends Seeder
@@ -105,6 +106,19 @@ class OfficialPlaylistsTableSeeder extends Seeder
             'display_name' => 'Valhalla',
             'file_name' => 'riverworld',
             'slug' => 'valhalla',
+        ]);
+
+        // Variant examples
+        Variant::create([
+            'display_name' => 'Slayer',
+            'file_name' => 'Slayer',
+            'slug' => 'slayer-12345',
+        ]);
+        
+        Variant::create([
+            'display_name' => 'Team CTF',
+            'file_name' => 'Team CTF',
+            'slug' => 'team-ctf-54321',
         ]);
     }
 }

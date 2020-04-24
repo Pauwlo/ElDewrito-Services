@@ -19,6 +19,7 @@
                 <i data-toggle="dropdown" class="zwicon-more-h"></i>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ route('official-playlists.maps.index') }}" class="dropdown-item">{{ __('Manage maps') }}</a>
+                    <a href="{{ route('official-playlists.variants.index') }}" class="dropdown-item">{{ __('Manage variants') }}</a>
                 </div>
             </div>
         </div>
