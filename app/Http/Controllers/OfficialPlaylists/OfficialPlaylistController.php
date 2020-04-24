@@ -5,8 +5,8 @@ namespace App\Http\Controllers\OfficialPlaylists;
 use App\Http\Controllers\Controller;
 use App\OfficialPlaylists\RankedPlaylist;
 use App\OfficialPlaylists\SocialPlaylist;
-use App\Http\Requests\CreateOfficialPlaylistRequest;
-use App\Http\Requests\UpdateOfficialPlaylistRequest;
+use App\Http\Requests\OfficialPlaylists\CreatePlaylistRequest;
+use App\Http\Requests\OfficialPlaylists\UpdatePlaylistRequest;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -59,10 +59,10 @@ class OfficialPlaylistController extends Controller
     /**
      * Store a newly created official playlist in storage.
      *
-     * @param  \App\Http\Requests\CreateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\CreatePlaylistRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateOfficialPlaylistRequest $request)
+    public function store(CreatePlaylistRequest $request)
     {
         $attributes = [
             'name' => request('name'),
@@ -167,11 +167,11 @@ class OfficialPlaylistController extends Controller
     /**
      * Update the specified ranked official playlist in storage.
      *
-     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\UpdatePlaylistRequest  $request
      * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
      * @return \Illuminate\Http\Response
      */
-    public function updateRanked(UpdateOfficialPlaylistRequest $request, RankedPlaylist $playlist)
+    public function updateRanked(UpdatePlaylistRequest $request, RankedPlaylist $playlist)
     {
         $attributes = [
             'name' => request('name'),
@@ -195,11 +195,11 @@ class OfficialPlaylistController extends Controller
     /**
      * Update the specified social official playlist in storage.
      *
-     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\UpdatePlaylistRequest  $request
      * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
      * @return \Illuminate\Http\Response
      */
-    public function updateSocial(UpdateOfficialPlaylistRequest $request, SocialPlaylist $playlist)
+    public function updateSocial(UpdatePlaylistRequest $request, SocialPlaylist $playlist)
     {
         $attributes = [
             'name' => request('name'),
