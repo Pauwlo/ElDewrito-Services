@@ -38,7 +38,7 @@
                 <a href=""><i class="zwicon-server-stack"></i> {{ __('Official Playlists') }}</a>
 
                 <ul>
-                    <li{!! (Route::is('official-playlists.*') && !Route::is('official-playlists.maps.*') && !Route::is('official-playlists.variants.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.index') }}">{{ __('Playlists') }}</a></li>
+                    <li{!! (Route::is('official-playlists.playlists.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.playlists.index') }}">{{ __('Playlists') }}</a></li>
                     <li{!! (Route::is('official-playlists.maps.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.maps.index') }}">{{ __('Maps') }}</a></li>
                     <li{!! (Route::is('official-playlists.variants.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.variants.index') }}">{{ __('Variants') }}</a></li>
                 </ul>

@@ -25,21 +25,21 @@ Route::namespace('Api')->group(function () {
 
 Route::namespace('OfficialPlaylists')->group(function () {
 
-    Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.index');
-    Route::get('official-playlists/create', 'OfficialPlaylistController@create')->name('official-playlists.create');
-    Route::post('official-playlists', 'OfficialPlaylistController@store')->name('official-playlists.store');
+    Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.playlists.index');
+    Route::get('official-playlists/create', 'OfficialPlaylistController@create')->name('official-playlists.playlists.create');
+    Route::post('official-playlists', 'OfficialPlaylistController@store')->name('official-playlists.playlists.store');
 
-    Route::get('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@showRanked')->name('official-playlists.ranked.show');
-    Route::put('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@updateRanked')->name('official-playlists.ranked.update');
-    Route::get('official-playlists/ranked/{playlist}/edit', 'OfficialPlaylistController@editRanked')->name('official-playlists.ranked.edit');
-    Route::delete('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@destroyRanked')->name('official-playlists.ranked.destroy');
-    Route::get('official-playlists/ranked/{playlist}/json', 'OfficialPlaylistController@jsonRanked')->name('official-playlists.ranked.json');
+    Route::get('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@showRanked')->name('official-playlists.playlists.ranked.show');
+    Route::put('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@updateRanked')->name('official-playlists.playlists.ranked.update');
+    Route::get('official-playlists/ranked/{playlist}/edit', 'OfficialPlaylistController@editRanked')->name('official-playlists.playlists.ranked.edit');
+    Route::delete('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@destroyRanked')->name('official-playlists.playlists.ranked.destroy');
+    Route::get('official-playlists/ranked/{playlist}/json', 'OfficialPlaylistController@jsonRanked')->name('official-playlists.playlists.ranked.json');
 
-    Route::get('official-playlists/social/{playlist}', 'OfficialPlaylistController@showSocial')->name('official-playlists.social.show');
-    Route::put('official-playlists/social/{playlist}', 'OfficialPlaylistController@updateSocial')->name('official-playlists.social.update');
-    Route::get('official-playlists/social/{playlist}/edit', 'OfficialPlaylistController@editSocial')->name('official-playlists.social.edit');
-    Route::delete('official-playlists/social/{playlist}', 'OfficialPlaylistController@destroySocial')->name('official-playlists.social.destroy');
-    Route::get('official-playlists/social/{playlist}/json', 'OfficialPlaylistController@jsonSocial')->name('official-playlists.social.json');
+    Route::get('official-playlists/social/{playlist}', 'OfficialPlaylistController@showSocial')->name('official-playlists.playlists.social.show');
+    Route::put('official-playlists/social/{playlist}', 'OfficialPlaylistController@updateSocial')->name('official-playlists.playlists.social.update');
+    Route::get('official-playlists/social/{playlist}/edit', 'OfficialPlaylistController@editSocial')->name('official-playlists.playlists.social.edit');
+    Route::delete('official-playlists/social/{playlist}', 'OfficialPlaylistController@destroySocial')->name('official-playlists.playlists.social.destroy');
+    Route::get('official-playlists/social/{playlist}/json', 'OfficialPlaylistController@jsonSocial')->name('official-playlists.playlists.social.json');
 
     Route::get('official-playlists/maps', 'MapController@index')->name('official-playlists.maps.index');
     Route::get('official-playlists/maps/create', 'MapController@create')->name('official-playlists.maps.create');

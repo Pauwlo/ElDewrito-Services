@@ -19,7 +19,7 @@
         <div class="card-body">
             <h4 class="card-title">{{ __('Create a new playlist') }}</h4>
 
-            <form method="POST" action="{{ route('official-playlists.store') }}">
+            <form method="POST" action="{{ route('official-playlists.playlists.store') }}">
                 @csrf
 
                 <div class="form-group">

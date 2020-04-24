@@ -47,7 +47,7 @@ class MapController extends Controller
             'slug' => Str::slug(request('file-name') . ' ' . random_int(10000, 99999)),
         ]);
 
-        return redirect()->route("official-playlists.maps.show", $map)
+        return redirect()->route('official-playlists.playlists.maps.show', $map)
                          ->with('status', __('Map added!'));
     }
 

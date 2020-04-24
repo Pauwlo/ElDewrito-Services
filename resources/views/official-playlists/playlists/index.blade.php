@@ -32,7 +32,7 @@
                     <h4 class="card-title">{{ __('Ranked Playlists') }}</h4>
 
                     <div class="actions">
-                        <a href="{{ route('official-playlists.create', ['type' => 'ranked']) }}" class="actions__item zwicon-plus" title="{{ __('Create a ranked playlist') }}"></a>
+                        <a href="{{ route('official-playlists.playlists.create', ['type' => 'ranked']) }}" class="actions__item zwicon-plus" title="{{ __('Create a ranked playlist') }}"></a>
                     </div>
                 </div>
 
@@ -45,12 +45,12 @@
                             </div>
 
                             <div class="actions listview__actions">
-                                <a href="{{ route('official-playlists.ranked.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
-                                <a href="{{ route('official-playlists.ranked.edit', $playlist) }}" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
-                                <a href="{{ route('official-playlists.ranked.destroy', $playlist) }}" title="{{ __('Delete playlist') }}" onclick="event.preventDefault();document.getElementById('delete-ranked-playlist-form-{{ $playlist->slug }}').submit();"><i class="actions__item zwicon-trash"></i></a>
+                                <a href="{{ route('official-playlists.playlists.ranked.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
+                                <a href="{{ route('official-playlists.playlists.ranked.edit', $playlist) }}" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
+                                <a href="{{ route('official-playlists.playlists.ranked.destroy', $playlist) }}" title="{{ __('Delete playlist') }}" onclick="event.preventDefault();document.getElementById('delete-ranked-playlist-form-{{ $playlist->slug }}').submit();"><i class="actions__item zwicon-trash"></i></a>
                             </div>
 
-                            <form method="POST" action="{{ route('official-playlists.ranked.destroy', $playlist) }}" id="delete-ranked-playlist-form-{{ $playlist->slug }}" style="display:none">
+                            <form method="POST" action="{{ route('official-playlists.playlists.ranked.destroy', $playlist) }}" id="delete-ranked-playlist-form-{{ $playlist->slug }}" style="display:none">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -67,7 +67,7 @@
                     <h4 class="card-title">{{ __('Social Playlists') }}</h4>
 
                     <div class="actions">
-                        <a href="{{ route('official-playlists.create', ['type' => 'social']) }}" class="actions__item zwicon-plus" title="{{ __('Create a social playlist') }}"></a>
+                        <a href="{{ route('official-playlists.playlists.create', ['type' => 'social']) }}" class="actions__item zwicon-plus" title="{{ __('Create a social playlist') }}"></a>
                     </div>
                 </div>
 
@@ -80,12 +80,12 @@
                             </div>
 
                             <div class="actions listview__actions">
-                                <a href="{{ route('official-playlists.social.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
-                                <a href="{{ route('official-playlists.social.edit', $playlist) }}" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
-                                <a href="{{ route('official-playlists.social.destroy', $playlist) }}" title="{{ __('Delete playlist') }}" onclick="event.preventDefault();document.getElementById('delete-social-playlist-form-{{ $playlist->slug }}').submit();"><i class="actions__item zwicon-trash"></i></a>
+                                <a href="{{ route('official-playlists.playlists.social.show', $playlist) }}" title="{{ __('Show playlist') }}"><i class="actions__item zwicon-document"></i></a>
+                                <a href="{{ route('official-playlists.playlists.social.edit', $playlist) }}" title="{{ __('Edit playlist') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
+                                <a href="{{ route('official-playlists.playlists.social.destroy', $playlist) }}" title="{{ __('Delete playlist') }}" onclick="event.preventDefault();document.getElementById('delete-social-playlist-form-{{ $playlist->slug }}').submit();"><i class="actions__item zwicon-trash"></i></a>
                             </div>
 
-                            <form method="POST" action="{{ route('official-playlists.social.destroy', $playlist) }}" id="delete-social-playlist-form-{{ $playlist->slug }}" style="display:none">
+                            <form method="POST" action="{{ route('official-playlists.playlists.social.destroy', $playlist) }}" id="delete-social-playlist-form-{{ $playlist->slug }}" style="display:none">
                                 @csrf
                                 @method('DELETE')
                             </form>

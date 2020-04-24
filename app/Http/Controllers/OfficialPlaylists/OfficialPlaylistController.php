@@ -22,7 +22,7 @@ class OfficialPlaylistController extends Controller
         $rankedPlaylists = RankedPlaylist::all();
         $socialPlaylists = SocialPlaylist::all();
 
-        return view('official-playlists.index', compact('rankedPlaylists', 'socialPlaylists'));
+        return view('official-playlists.playlists.index', compact('rankedPlaylists', 'socialPlaylists'));
     }
 
     /**
@@ -50,7 +50,7 @@ class OfficialPlaylistController extends Controller
             $defaultMessage = "Thanks for playing on the official $type # server.\n\nType !help in chat for a list of commands.";
         }
 
-        return view('official-playlists.create', compact(
+        return view('official-playlists.playlists.create', compact(
             'defaultServerName',
             'defaultMessage',
         ));
@@ -82,7 +82,7 @@ class OfficialPlaylistController extends Controller
             $playlist = SocialPlaylist::create($attributes);
         }
 
-        return redirect()->route("official-playlists.$type.show", $playlist)
+        return redirect()->route("official-playlists.playlists.$type.show", $playlist)
                          ->with('status', __('Playlist created!'));
     }
 
@@ -96,11 +96,11 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Ranked playlist');
         $title = "$type: $playlist->name";
-        $jsonRoute = route('official-playlists.ranked.json', $playlist);
-        $editRoute = route('official-playlists.ranked.edit', $playlist);
-        $destroyRoute = route('official-playlists.ranked.destroy', $playlist);
+        $jsonRoute = route('official-playlists.playlists.ranked.json', $playlist);
+        $editRoute = route('official-playlists.playlists.ranked.edit', $playlist);
+        $destroyRoute = route('official-playlists.playlists.ranked.destroy', $playlist);
 
-        return view('official-playlists.show', compact(
+        return view('official-playlists.playlists.show', compact(
             'playlist',
             'type',
             'title',
@@ -120,11 +120,11 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Social playlist');
         $title = "$type: $playlist->name";
-        $jsonRoute = route('official-playlists.social.json', $playlist);
-        $editRoute = route('official-playlists.social.edit', $playlist);
-        $destroyRoute = route('official-playlists.social.destroy', $playlist);
+        $jsonRoute = route('official-playlists.playlists.social.json', $playlist);
+        $editRoute = route('official-playlists.playlists.social.edit', $playlist);
+        $destroyRoute = route('official-playlists.playlists.social.destroy', $playlist);
 
-        return view('official-playlists.show', compact(
+        return view('official-playlists.playlists.show', compact(
             'playlist',
             'type',
             'title',
@@ -144,9 +144,9 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Ranked playlist');
         $title = __('Edit ranked playlist:') . " $playlist->name";
-        $updateRoute = route('official-playlists.ranked.update', $playlist);
+        $updateRoute = route('official-playlists.playlists.ranked.update', $playlist);
 
-        return view('official-playlists.edit', compact('playlist', 'type', 'title', 'updateRoute'));
+        return view('official-playlists.playlists.edit', compact('playlist', 'type', 'title', 'updateRoute'));
     }
 
     /**
@@ -159,9 +159,9 @@ class OfficialPlaylistController extends Controller
     {
         $type = __('Social playlist');
         $title = __('Edit social playlist:') . " $playlist->name";
-        $updateRoute = route('official-playlists.social.update', $playlist);
+        $updateRoute = route('official-playlists.playlists.social.update', $playlist);
 
-        return view('official-playlists.edit', compact('playlist', 'type', 'title', 'updateRoute'));
+        return view('official-playlists.playlists.edit', compact('playlist', 'type', 'title', 'updateRoute'));
     }
 
     /**
@@ -188,7 +188,7 @@ class OfficialPlaylistController extends Controller
 
         $playlist->update($attributes);
 
-        return redirect()->route('official-playlists.ranked.show', $playlist)
+        return redirect()->route('official-playlists.playlists.ranked.show', $playlist)
                          ->with('status', __('Playlist updated!'));
     }
 
@@ -216,7 +216,7 @@ class OfficialPlaylistController extends Controller
 
         $playlist->update($attributes);
 
-        return redirect()->route('official-playlists.social.show', $playlist)
+        return redirect()->route('official-playlists.playlists.social.show', $playlist)
                          ->with('status', __('Playlist updated!'));
     }
 
@@ -230,7 +230,7 @@ class OfficialPlaylistController extends Controller
     {
         $playlist->delete();
 
-        return redirect()->route('official-playlists.index')
+        return redirect()->route('official-playlists.playlists.index')
                          ->with('status', __('Playlist deleted!'));
     }
 
@@ -244,7 +244,7 @@ class OfficialPlaylistController extends Controller
     {
         $playlist->delete();
 
-        return redirect()->route('official-playlists.index')
+        return redirect()->route('official-playlists.playlists.index')
                          ->with('status', __('Playlist deleted!'));
     }
 
