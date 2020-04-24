@@ -13,6 +13,15 @@
 
     <header class="content__title">
         <h1>{{ __('Official Playlists') }}</h1>
+
+        <div class="actions">
+            <div class="dropdown actions__item">
+                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="{{ route('official-playlists.maps.index') }}" class="dropdown-item">{{ __('Manage maps') }}</a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div class="row">

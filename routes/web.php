@@ -41,4 +41,11 @@ Route::namespace('OfficialPlaylists')->group(function () {
     Route::delete('official-playlists/social/{playlist}', 'OfficialPlaylistController@destroySocial')->name('official-playlists.social.destroy');
     Route::get('official-playlists/social/{playlist}/json', 'OfficialPlaylistController@jsonSocial')->name('official-playlists.social.json');
 
+    Route::get('official-playlists/maps', 'MapController@index')->name('official-playlists.maps.index');
+    Route::get('official-playlists/maps/create', 'MapController@create')->name('official-playlists.maps.create');
+    Route::post('official-playlists/maps', 'MapController@store')->name('official-playlists.maps.store');
+    Route::get('official-playlists/maps/{map}', 'MapController@show')->name('official-playlists.maps.show');
+    Route::get('official-playlists/maps/{map}/edit', 'MapController@edit')->name('official-playlists.maps.edit');
+    Route::put('official-playlists/maps/{map}', 'MapController@update')->name('official-playlists.maps.update');
+    Route::delete('official-playlists/maps/{map}', 'MapController@destroy')->name('official-playlists.maps.destroy');
 });
