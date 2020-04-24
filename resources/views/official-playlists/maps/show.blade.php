@@ -27,7 +27,7 @@
                             <i data-toggle="dropdown" class="zwicon-more-h"></i>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="{{ route('official-playlists.maps.edit', $map) }}" class="dropdown-item">{{ __('Edit map') }}</a>
-                                <a href="{{ route('official-playlists.maps.destroy', $map) }}" class="dropdown-item text-danger" onclick="event.preventDefault();document.getElementById('delete-map-form').submit();">{{ __('Delete map') }}</a>
+                                <a href="{{ route('official-playlists.maps.destroy', $map) }}" class="dropdown-item text-danger" onclick="event.preventDefault();document.getElementById('delete-map-form').submit();">{{ __('Remove map') }}</a>
                             </div>
                         </div>
 

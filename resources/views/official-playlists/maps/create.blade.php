@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create a new map')
+@section('title', 'Add a map')
 
 @section('description', '')
 
@@ -17,7 +17,7 @@
 
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">{{ __('Create a new map') }}</h4>
+            <h4 class="card-title">{{ __('Add a map') }}</h4>
 
             <form method="POST" action="{{ route('official-playlists.maps.store') }}">
                 @csrf
@@ -44,7 +44,7 @@
                     @enderror
                 </div>
                 
-                <button type="submit" class="btn btn-primary">{{ __('Create map') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Add map') }}</button>
             </form>
         </div>
     </div>

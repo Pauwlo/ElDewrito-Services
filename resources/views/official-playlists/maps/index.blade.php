@@ -35,7 +35,7 @@
                             <div class="actions listview__actions">
                                 <a href="{{ route('official-playlists.maps.show', $map) }}" title="{{ __('Show map') }}"><i class="actions__item zwicon-document"></i></a>
                                 <a href="{{ route('official-playlists.maps.edit', $map) }}" title="{{ __('Edit map') }}"><i class="actions__item zwicon-edit-pencil"></i></a>
-                                <a href="{{ route('official-playlists.maps.destroy', $map) }}" title="{{ __('Delete map') }}" onclick="event.preventDefault();document.getElementById('delete-map-form-{{ $map->id }}').submit();"><i class="actions__item zwicon-trash"></i></a>
+                                <a href="{{ route('official-playlists.maps.destroy', $map) }}" title="{{ __('Remove map') }}" onclick="event.preventDefault();document.getElementById('delete-map-form-{{ $map->id }}').submit();"><i class="actions__item zwicon-trash"></i></a>
                             </div>
 
                             <form method="POST" action="{{ route('official-playlists.maps.destroy', $map) }}" id="delete-map-form-{{ $map->id }}" style="display:none">

@@ -48,7 +48,7 @@ class MapController extends Controller
         ]);
 
         return redirect()->route("official-playlists.maps.show", $map)
-                         ->with('status', __('Map created!'));
+                         ->with('status', __('Map added!'));
     }
 
     /**
@@ -108,6 +108,6 @@ class MapController extends Controller
         $map->delete();
 
         return redirect()->route('official-playlists.maps.index')
-                         ->with('status', __('Map deleted!'));
+                         ->with('status', __('Map removed!'));
     }
 }
