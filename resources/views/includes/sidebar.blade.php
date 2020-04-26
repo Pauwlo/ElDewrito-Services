@@ -42,6 +42,7 @@
                     <li{!! (Route::is('official-playlists.maps.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.maps.index') }}">{{ __('Maps') }}</a></li>
                     <li{!! (Route::is('official-playlists.variants.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.variants.index') }}">{{ __('Variants') }}</a></li>
                     <li{!! (Route::is('official-playlists.commands.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.commands.index') }}">{{ __('Commands') }}</a></li>
+                    <li{!! (Route::is('official-playlists.options.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.options.index') }}">{{ __('Options') }}</a></li>
                 </ul>
             </li>
 

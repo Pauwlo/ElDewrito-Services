@@ -47,7 +47,7 @@ class VariantController extends Controller
             'slug' => Str::slug(request('file-name') . ' ' . random_int(10000, 99999)),
         ]);
 
-        return redirect()->route('official-playlists.playlists.variants.show', $variant)
+        return redirect()->route('official-playlists.variants.show', $variant)
                          ->with('status', __('Variant added!'));
     }
 

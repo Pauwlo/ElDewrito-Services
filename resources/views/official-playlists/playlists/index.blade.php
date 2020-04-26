@@ -21,6 +21,7 @@
                     <a href="{{ route('official-playlists.maps.index') }}" class="dropdown-item">{{ __('Manage maps') }}</a>
                     <a href="{{ route('official-playlists.variants.index') }}" class="dropdown-item">{{ __('Manage variants') }}</a>
                     <a href="{{ route('official-playlists.commands.index') }}" class="dropdown-item">{{ __('Manage commands') }}</a>
+                    <a href="{{ route('official-playlists.options.index') }}" class="dropdown-item">{{ __('Manage options') }}</a>
                 </div>
             </div>
         </div>

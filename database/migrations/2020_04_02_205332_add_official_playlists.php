@@ -59,6 +59,13 @@ class AddOfficialPlaylists extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
         });
+
+        Schema::create('options', function (Blueprint $table) {
+            $table->id();
+            $table->boolean('can_be_veto_result');
+            $table->string('slug')->unique();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -68,6 +75,7 @@ class AddOfficialPlaylists extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('options');
         Schema::dropIfExists('commands');
         Schema::dropIfExists('variants');
         Schema::dropIfExists('maps');
