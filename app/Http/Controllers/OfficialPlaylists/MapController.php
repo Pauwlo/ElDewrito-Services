@@ -36,7 +36,7 @@ class MapController extends Controller
     /**
      * Store a newly created map in storage.
      *
-     * @param  \App\Http\Requests\CreateMapRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\CreateMapRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateMapRequest $request)
@@ -74,9 +74,9 @@ class MapController extends Controller
     }
 
     /**
-     * Update the specified ranked official playlist in storage.
+     * Update the specified map in storage.
      *
-     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\UpdateMapRequest  $request
      * @param  \App\OfficialPlaylists\Map  $map
      * @return \Illuminate\Http\Response
      */

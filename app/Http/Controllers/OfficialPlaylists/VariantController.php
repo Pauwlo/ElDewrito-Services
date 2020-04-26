@@ -36,7 +36,7 @@ class VariantController extends Controller
     /**
      * Store a newly created variant in storage.
      *
-     * @param  \App\Http\Requests\CreateVariantRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\CreateVariantRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateVariantRequest $request)
@@ -74,9 +74,9 @@ class VariantController extends Controller
     }
 
     /**
-     * Update the specified ranked official playlist in storage.
+     * Update the specified variant in storage.
      *
-     * @param  \App\Http\Requests\UpdateOfficialPlaylistRequest  $request
+     * @param  \App\Http\Requests\OfficialPlaylists\UpdateVariantRequest  $request
      * @param  \App\OfficialPlaylists\Variant  $variant
      * @return \Illuminate\Http\Response
      */

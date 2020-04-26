@@ -20,6 +20,7 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="{{ route('official-playlists.maps.index') }}" class="dropdown-item">{{ __('Manage maps') }}</a>
                     <a href="{{ route('official-playlists.variants.index') }}" class="dropdown-item">{{ __('Manage variants') }}</a>
+                    <a href="{{ route('official-playlists.commands.index') }}" class="dropdown-item">{{ __('Manage commands') }}</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\OfficialPlaylists\Command;
 use App\OfficialPlaylists\Map;
 use App\OfficialPlaylists\SocialPlaylist;
 use App\OfficialPlaylists\RankedPlaylist;
@@ -119,6 +120,17 @@ class OfficialPlaylistsTableSeeder extends Seeder
             'display_name' => 'Team CTF',
             'file_name' => 'Team CTF',
             'slug' => 'team-ctf-54321',
+        ]);
+
+        // Common commands
+        Command::create([
+            'command' => 'Server.BetrayalLimit 3',
+            'slug' => 'server-betrayallimit-3-12345',
+        ]);
+
+        Command::create([
+            'command' => 'Server.NumberOfTeams 2',
+            'slug' => 'server-numberofteams-2-54321',
         ]);
     }
 }

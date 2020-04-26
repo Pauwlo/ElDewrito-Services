@@ -56,4 +56,12 @@ Route::namespace('OfficialPlaylists')->group(function () {
     Route::get('official-playlists/variants/{variant}/edit', 'VariantController@edit')->name('official-playlists.variants.edit');
     Route::put('official-playlists/variants/{variant}', 'VariantController@update')->name('official-playlists.variants.update');
     Route::delete('official-playlists/variants/{variant}', 'VariantController@destroy')->name('official-playlists.variants.destroy');
+
+    Route::get('official-playlists/commands', 'CommandController@index')->name('official-playlists.commands.index');
+    Route::get('official-playlists/commands/create', 'CommandController@create')->name('official-playlists.commands.create');
+    Route::post('official-playlists/commands', 'CommandController@store')->name('official-playlists.commands.store');
+    Route::get('official-playlists/commands/{command}', 'CommandController@show')->name('official-playlists.commands.show');
+    Route::get('official-playlists/commands/{command}/edit', 'CommandController@edit')->name('official-playlists.commands.edit');
+    Route::put('official-playlists/commands/{command}', 'CommandController@update')->name('official-playlists.commands.update');
+    Route::delete('official-playlists/commands/{command}', 'CommandController@destroy')->name('official-playlists.commands.destroy');
 });
