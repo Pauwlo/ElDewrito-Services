@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Option:') . " $option->id")
+@section('title', __('Option:') . ' ' . $option->variant->display_name . ' on ' . $option->map->display_name)
 
 @section('content')
 <div class="content__inner content__inner--sm">
@@ -10,9 +10,7 @@
     @include('includes.alert')
 
     <header class="content__title">
-        <h1>
-            {{ $option->id }}
-        </h1>
+        <h1>{{ $option->variant->display_name }} on {{ $option->map->display_name }}</h1>
     </header>
 
     <div class="row">
@@ -37,6 +35,8 @@
                     </div>
 
                     <ul>
+                        <li>Variant: {{ $option->variant->display_name }} ({{ $option->variant->file_name }})</li>
+                        <li>Map: {{ $option->map->display_name }} ({{ $option->map->file_name }})</li>
                         <li>Can be veto result: {{ $option->can_be_veto_result ? __('Yes') : __('No') }}</li>
                     </ul>
                 </div>

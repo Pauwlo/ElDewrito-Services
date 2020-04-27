@@ -24,7 +24,8 @@ class CreateOptionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'map' => 'required|string|exists:maps,slug',
+            'variant' => 'required|string|exists:variants,slug',
         ];
     }
 }

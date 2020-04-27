@@ -28,7 +28,7 @@
                     @foreach ($options as $option)
                         <div class="listview__item">
                             <div class="listview__content">
-                                <div class="listview__heading">{{ $option->id }}</div>
+                                <div class="listview__heading">{{ $option->variant->display_name }} on {{ $option->map->display_name }}</div>
                                 <p>{{ __('Updated') }} {{ $option->updated_at->diffForHumans() }}</p>
                             </div>
 

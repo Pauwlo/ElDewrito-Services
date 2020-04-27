@@ -62,9 +62,21 @@ class AddOfficialPlaylists extends Migration
 
         Schema::create('options', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('map_id');
+            $table->unsignedBigInteger('variant_id');
             $table->boolean('can_be_veto_result');
             $table->string('slug')->unique();
             $table->timestamps();
+
+            $table->foreign('map_id')
+                  ->references('id')
+                  ->on('maps')
+                  ->onDelete('cascade');
+
+            $table->foreign('variant_id')
+                  ->references('id')
+                  ->on('variants')
+                  ->onDelete('cascade');
         });
     }
 

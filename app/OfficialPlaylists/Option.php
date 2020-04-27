@@ -21,6 +21,8 @@ class Option extends Model
      * @var array
      */
     protected $fillable = [
+        'map_id',
+        'variant_id',
         'can_be_veto_result',
         'slug',
     ];
@@ -33,5 +35,21 @@ class Option extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Get the map that owns the option.
+     */
+    public function map()
+    {
+        return $this->belongsTo(Map::class);
+    }
+
+    /**
+     * Get the variant that owns the option.
+     */
+    public function variant()
+    {
+        return $this->belongsTo(Variant::class);
     }
 }

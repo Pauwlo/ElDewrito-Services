@@ -5,7 +5,9 @@ namespace App\Http\Controllers\OfficialPlaylists;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfficialPlaylists\CreateOptionRequest;
 use App\Http\Requests\OfficialPlaylists\UpdateOptionRequest;
+use App\OfficialPlaylists\Map;
 use App\OfficialPlaylists\Option;
+use App\OfficialPlaylists\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -30,7 +32,10 @@ class OptionController extends Controller
      */
     public function create()
     {
-        return view('official-playlists.options.create');
+        $maps = Map::all();
+        $variants = Variant::all();
+
+        return view('official-playlists.options.create', compact('maps', 'variants'));
     }
 
     /**
@@ -41,7 +46,12 @@ class OptionController extends Controller
      */
     public function store(CreateOptionRequest $request)
     {
+        $map = Map::where('slug', request('map'))->first();
+        $variant = Variant::where('slug', request('variant'))->first();
+
         $option = Option::create([
+            'map_id' => $map->id,
+            'variant_id' => $variant->id,
             'can_be_veto_result' => $request->has('can-be-veto-result'),
             'slug' => Str::slug(random_int(10000, 99999)),
         ]);
@@ -69,7 +79,10 @@ class OptionController extends Controller
      */
     public function edit(Option $option)
     {
-        return view('official-playlists.options.edit', compact('option'));
+        $maps = Map::all();
+        $variants = Variant::all();
+
+        return view('official-playlists.options.edit', compact('option', 'maps', 'variants'));
     }
 
     /**
@@ -81,7 +94,12 @@ class OptionController extends Controller
      */
     public function update(UpdateOptionRequest $request, Option $option)
     {
+        $map = Map::where('slug', request('map'))->first();
+        $variant = Variant::where('slug', request('variant'))->first();
+
         $attributes = [
+            'map_id' => $map->id,
+            'variant_id' => $variant->id,
             'can_be_veto_result' => $request->has('can-be-veto-result'),
         ];
 
