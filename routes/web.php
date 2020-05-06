@@ -59,6 +59,7 @@ Route::namespace('OfficialPlaylists')->group(function () {
     Route::get('official-playlists/variants/{variant}/edit', 'VariantController@edit')->name('official-playlists.variants.edit');
     Route::put('official-playlists/variants/{variant}', 'VariantController@update')->name('official-playlists.variants.update');
     Route::delete('official-playlists/variants/{variant}', 'VariantController@destroy')->name('official-playlists.variants.destroy');
+    Route::put('official-playlists/variants/{variant}/commands/add', 'VariantController@addCommand')->name('official-playlists.variants.commands.add');
 
     Route::get('official-playlists/commands', 'CommandController@index')->name('official-playlists.commands.index');
     Route::get('official-playlists/commands/create', 'CommandController@create')->name('official-playlists.commands.create');

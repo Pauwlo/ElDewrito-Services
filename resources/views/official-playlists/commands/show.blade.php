@@ -39,6 +39,16 @@
                     <ul>
                         <li>Command: {{ $command->command }}</li>
                     </ul>
+
+                    @if (count($command->variants))
+                        <p>Variants including this command:</p>
+
+                        <ul>
+                            @foreach ($command->variants as $variant)
+                                <li><a href="{{ route('official-playlists.variants.show', $variant) }}">{{ $variant->display_name }} ({{ $variant->file_name }})</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="card-header">

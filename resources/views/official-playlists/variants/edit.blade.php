@@ -50,5 +50,52 @@
             </form>
         </div>
     </div>
+
+    <div class="card" id="edit-commands">
+        <div class="card-body">
+            <h4 class="card-title">{{ __('Edit variant commands') }}</h4>
+
+            <form method="POST" action="{{ route('official-playlists.variants.commands.add', $variant) }}">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label for="command">{{ __('Commands available') }}</label>
+                    <select name="command" id="command" class="select2 form-control @error('command') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
+                        <option value=""{{ !old('command') ? ' selected' : '' }}></option>
+                        @foreach ($variant->commandsAvailable() as $command)
+                            <option value="{{ $command->slug }}"{{ (old('command') === $command->slug) ? ' selected' : '' }}>{{ $command->command }}</option>
+                        @endforeach
+                    </select>
+                    
+                    @error('command')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                
+                <button type="submit" class="btn btn-primary">{{ __('Add command') }}</button>
+            </form>
+
+            @if (count($variant->commands))
+                <p class="mt-4">{{ __('Commands in the variant:') }}</p>
+
+                <ul>
+                    @foreach ($variant->commands as $command)
+                        <li><a href="{{ route('official-playlists.commands.show', $command) }}">{{ $command->command }}</a></li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+    </div>
 </div>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js" defer></script>
 @endsection

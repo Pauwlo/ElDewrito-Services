@@ -59,5 +59,30 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <h4 class="card-title">{{ __('Commands') }}</h4>
+
+                        <div class="actions">
+                            <div class="dropdown actions__item">
+                                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ route('official-playlists.variants.edit', $variant) }}#edit-commands" class="dropdown-item">{{ __('Edit variant commands') }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul>
+                            @foreach ($variant->commands as $command)
+                                <li><a href="{{ route('official-playlists.commands.show', $command) }}">{{ $command->command }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 @endsection

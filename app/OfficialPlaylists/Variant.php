@@ -3,6 +3,7 @@
 namespace App\OfficialPlaylists;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Variant extends Model
 {
@@ -40,6 +41,26 @@ class Variant extends Model
     public function playlists()
     {
         return $this->belongsToMany(SocialPlaylist::class, 'socialplaylist_variant', 'variant_id', 'socialplaylist_id');
+    }
+
+    /**
+     * The commands that belong to the variant.
+     */
+    public function commands()
+    {
+        return $this->belongsToMany(Command::class);
+    }
+
+    /**
+     * The commands that do not belong to the variant.
+     */
+    public function commandsAvailable()
+    {
+        $ids = DB::table('command_variant')
+                 ->where('variant_id', $this->id)
+                 ->pluck('command_id');
+
+        return Command::whereNotIn('id', $ids)->get();
     }
 
     /**

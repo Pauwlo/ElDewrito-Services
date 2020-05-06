@@ -129,6 +129,23 @@ class AddOfficialPlaylists extends Migration
                   ->on('variants')
                   ->onDelete('cascade');
         });
+
+        Schema::create('command_variant', function (Blueprint $table) {
+            $table->unsignedBigInteger('command_id');
+            $table->unsignedBigInteger('variant_id');
+
+            $table->primary(['command_id', 'variant_id']);
+
+            $table->foreign('command_id')
+                  ->references('id')
+                  ->on('commands')
+                  ->onDelete('cascade');
+            
+            $table->foreign('variant_id')
+                  ->references('id')
+                  ->on('variants')
+                  ->onDelete('cascade');
+        });
     }
 
     /**
@@ -138,6 +155,7 @@ class AddOfficialPlaylists extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('command_variant');
         Schema::dropIfExists('socialplaylist_variant');
         Schema::dropIfExists('map_socialplaylist');
         Schema::dropIfExists('option_rankedplaylist');

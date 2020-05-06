@@ -15,6 +15,13 @@ class Command extends Model
         'command',
         'slug',
     ];
+    
+    /**
+     * The relationships that should be touched on save.
+     *
+     * @var array
+     */
+    protected $touches = ['variants'];
 
     /**
      * Get the route key for the model.
@@ -24,5 +31,13 @@ class Command extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * The variants that belong to the command.
+     */
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class);
     }
 }

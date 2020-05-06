@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\OfficialPlaylists;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OfficialPlaylists\AddVariantCommandRequest;
 use App\Http\Requests\OfficialPlaylists\CreateVariantRequest;
 use App\Http\Requests\OfficialPlaylists\UpdateVariantRequest;
+use App\OfficialPlaylists\Command;
 use App\OfficialPlaylists\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -109,5 +111,23 @@ class VariantController extends Controller
 
         return redirect()->route('official-playlists.variants.index')
                          ->with('status', __('Variant removed!'));
+    }
+
+    /**
+     * Attach a command to the specified variant.
+     *
+     * @param  \App\Http\Requests\OfficialPlaylists\AddVariantCommandRequest  $request
+     * @param  \App\OfficialPlaylists\Variant  $variant
+     * @return \Illuminate\Http\Response
+     */
+    public function addCommand(AddVariantCommandRequest $request, Variant $variant)
+    {
+        $command = Command::where('slug', request('command'))->first();
+
+        $variant->commands()->attach($command);
+        $variant->touch();
+
+        $route = route('official-playlists.variants.edit', $variant) . '#edit-commands';
+        return redirect($route)->with('status', __('Command added!'));
     }
 }
