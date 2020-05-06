@@ -34,12 +34,15 @@ Route::namespace('OfficialPlaylists')->group(function () {
     Route::get('official-playlists/ranked/{playlist}/edit', 'OfficialPlaylistController@editRanked')->name('official-playlists.playlists.ranked.edit');
     Route::delete('official-playlists/ranked/{playlist}', 'OfficialPlaylistController@destroyRanked')->name('official-playlists.playlists.ranked.destroy');
     Route::get('official-playlists/ranked/{playlist}/json', 'OfficialPlaylistController@jsonRanked')->name('official-playlists.playlists.ranked.json');
+    Route::put('official-playlists/ranked/{playlist}/options/add', 'OfficialPlaylistController@addOption')->name('official-playlists.playlists.ranked.options.add');
 
     Route::get('official-playlists/social/{playlist}', 'OfficialPlaylistController@showSocial')->name('official-playlists.playlists.social.show');
     Route::put('official-playlists/social/{playlist}', 'OfficialPlaylistController@updateSocial')->name('official-playlists.playlists.social.update');
     Route::get('official-playlists/social/{playlist}/edit', 'OfficialPlaylistController@editSocial')->name('official-playlists.playlists.social.edit');
     Route::delete('official-playlists/social/{playlist}', 'OfficialPlaylistController@destroySocial')->name('official-playlists.playlists.social.destroy');
     Route::get('official-playlists/social/{playlist}/json', 'OfficialPlaylistController@jsonSocial')->name('official-playlists.playlists.social.json');
+    Route::put('official-playlists/social/{playlist}/maps/add', 'OfficialPlaylistController@addMap')->name('official-playlists.playlists.social.maps.add');
+    Route::put('official-playlists/social/{playlist}/variants/add', 'OfficialPlaylistController@addVariant')->name('official-playlists.playlists.social.variants.add');
 
     Route::get('official-playlists/maps', 'MapController@index')->name('official-playlists.maps.index');
     Route::get('official-playlists/maps/create', 'MapController@create')->name('official-playlists.maps.create');

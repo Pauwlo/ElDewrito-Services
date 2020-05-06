@@ -41,6 +41,16 @@
                         <li>Display name: {{ $variant->display_name }}</li>
                         <li>File name: {{ $variant->file_name }}</li>
                     </ul>
+
+                    @if (count($variant->playlists))
+                        <p>Playlists including this variant:</p>
+
+                        <ul>
+                            @foreach ($variant->playlists as $playlist)
+                                <li><a href="{{ route('official-playlists.playlists.social.show', $playlist) }}">{{ $playlist->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="card-header">

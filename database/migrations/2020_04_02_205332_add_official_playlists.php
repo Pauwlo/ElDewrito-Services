@@ -78,6 +78,57 @@ class AddOfficialPlaylists extends Migration
                   ->on('variants')
                   ->onDelete('cascade');
         });
+
+        Schema::create('option_rankedplaylist', function (Blueprint $table) {
+            $table->unsignedBigInteger('option_id');
+            $table->unsignedBigInteger('rankedplaylist_id');
+
+            $table->primary(['option_id', 'rankedplaylist_id']);
+
+            $table->foreign('option_id')
+                  ->references('id')
+                  ->on('options')
+                  ->onDelete('cascade');
+
+            $table->foreign('rankedplaylist_id')
+                  ->references('id')
+                  ->on('rankedplaylists')
+                  ->onDelete('cascade');
+        });
+
+        Schema::create('map_socialplaylist', function (Blueprint $table) {
+            $table->unsignedBigInteger('map_id');
+            $table->unsignedBigInteger('socialplaylist_id');
+
+            $table->primary(['map_id', 'socialplaylist_id']);
+
+            $table->foreign('map_id')
+                  ->references('id')
+                  ->on('maps')
+                  ->onDelete('cascade');
+
+            $table->foreign('socialplaylist_id')
+                  ->references('id')
+                  ->on('socialplaylists')
+                  ->onDelete('cascade');
+        });
+
+        Schema::create('socialplaylist_variant', function (Blueprint $table) {
+            $table->unsignedBigInteger('socialplaylist_id');
+            $table->unsignedBigInteger('variant_id');
+
+            $table->primary(['socialplaylist_id', 'variant_id']);
+
+            $table->foreign('socialplaylist_id')
+                  ->references('id')
+                  ->on('socialplaylists')
+                  ->onDelete('cascade');
+
+            $table->foreign('variant_id')
+                  ->references('id')
+                  ->on('variants')
+                  ->onDelete('cascade');
+        });
     }
 
     /**
@@ -87,6 +138,9 @@ class AddOfficialPlaylists extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('socialplaylist_variant');
+        Schema::dropIfExists('map_socialplaylist');
+        Schema::dropIfExists('option_rankedplaylist');
         Schema::dropIfExists('options');
         Schema::dropIfExists('commands');
         Schema::dropIfExists('variants');

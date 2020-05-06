@@ -35,10 +35,20 @@
                     </div>
 
                     <ul>
-                        <li>Variant: {{ $option->variant->display_name }} ({{ $option->variant->file_name }})</li>
-                        <li>Map: {{ $option->map->display_name }} ({{ $option->map->file_name }})</li>
+                        <li>Variant: <a href="{{ route('official-playlists.variants.show', $option->variant) }}">{{ $option->variant->display_name }} ({{ $option->variant->file_name }})</a></li>
+                        <li>Map: <a href="{{ route('official-playlists.maps.show', $option->map) }}">{{ $option->map->display_name }} ({{ $option->map->file_name }})</a></li>
                         <li>Can be veto result: {{ $option->can_be_veto_result ? __('Yes') : __('No') }}</li>
                     </ul>
+
+                    @if (count($option->playlists))
+                        <p>Playlists including this option:</p>
+
+                        <ul>
+                            @foreach ($option->playlists as $playlist)
+                                <li><a href="{{ route('official-playlists.playlists.ranked.show', $playlist) }}">{{ $playlist->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="card-header">

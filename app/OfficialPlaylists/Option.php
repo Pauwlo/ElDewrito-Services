@@ -28,6 +28,13 @@ class Option extends Model
     ];
 
     /**
+     * The relationships that should be touched on save.
+     *
+     * @var array
+     */
+    protected $touches = ['playlists'];
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -51,5 +58,13 @@ class Option extends Model
     public function variant()
     {
         return $this->belongsTo(Variant::class);
+    }
+
+    /**
+     * The playlists that belong to the option.
+     */
+    public function playlists()
+    {
+        return $this->belongsToMany(RankedPlaylist::class, 'option_rankedplaylist', 'option_id', 'rankedplaylist_id');
     }
 }

@@ -58,5 +58,87 @@
             </div>
         </div>
     </div>
+
+    @if ($playlist instanceof \App\OfficialPlaylists\RankedPlaylist)
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <h4 class="card-title">{{ __('Options') }}</h4>
+
+                        <div class="actions">
+                            <div class="dropdown actions__item">
+                                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ $editRoute }}#edit-options" class="dropdown-item">{{ __('Edit playlist options') }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        @foreach ($playlist->options as $option)
+                            <a href="{{ route('official-playlists.options.show', $option) }}"><strong>{{ $option->variant->display_name }} on {{ $option->map->display_name }}</strong></a>
+                            <ul>
+                                <li>Variant: <a href="{{ route('official-playlists.variants.show', $option->variant) }}">{{ $option->variant->display_name }} ({{ $option->variant->file_name }})</a></li>
+                                <li>Map: <a href="{{ route('official-playlists.maps.show', $option->map) }}">{{ $option->map->display_name }} ({{ $option->map->file_name }})</a></li>
+                                <li>Can be veto result: {{ $option->can_be_veto_result ? __('Yes') : __('No') }}</li>
+                            </ul>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if ($playlist instanceof \App\OfficialPlaylists\SocialPlaylist)
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <h4 class="card-title">{{ __('Maps') }}</h4>
+
+                        <div class="actions">
+                            <div class="dropdown actions__item">
+                                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ $editRoute }}#edit-maps" class="dropdown-item">{{ __('Edit playlist maps') }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul>
+                            @foreach ($playlist->maps as $map)
+                                <li><a href="{{ route('official-playlists.maps.show', $map) }}">{{ $map->display_name }} ({{ $map->file_name }})</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <h4 class="card-title">{{ __('Variants') }}</h4>
+
+                        <div class="actions">
+                            <div class="dropdown actions__item">
+                                <i data-toggle="dropdown" class="zwicon-more-h"></i>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ $editRoute }}#edit-variants" class="dropdown-item">{{ __('Edit playlist variants') }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul>
+                            @foreach ($playlist->variants as $variant)
+                                <li><a href="{{ route('official-playlists.variants.show', $variant) }}">{{ $variant->display_name }} ({{ $variant->file_name }})</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @endsection

@@ -41,6 +41,16 @@
                         <li>Display name: {{ $map->display_name }}</li>
                         <li>File name: {{ $map->file_name }}</li>
                     </ul>
+
+                    @if (count($map->playlists))
+                        <p>Playlists including this map:</p>
+
+                        <ul>
+                            @foreach ($map->playlists as $playlist)
+                                <li><a href="{{ route('official-playlists.playlists.social.show', $playlist) }}">{{ $playlist->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="card-header">

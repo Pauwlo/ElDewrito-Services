@@ -18,6 +18,13 @@ class Map extends Model
     ];
 
     /**
+     * The relationships that should be touched on save.
+     *
+     * @var array
+     */
+    protected $touches = ['playlists', 'options'];
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -25,5 +32,21 @@ class Map extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * The playlists that belong to the map.
+     */
+    public function playlists()
+    {
+        return $this->belongsToMany(SocialPlaylist::class, 'map_socialplaylist', 'map_id', 'socialplaylist_id');
+    }
+
+    /**
+     * The options that belong to the map.
+     */
+    public function options()
+    {
+        return $this->hasMany(Option::class);
     }
 }

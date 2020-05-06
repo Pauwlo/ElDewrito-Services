@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\OfficialPlaylists;
 
 use App\Http\Controllers\Controller;
+use App\OfficialPlaylists\Map;
+use App\OfficialPlaylists\Option;
 use App\OfficialPlaylists\RankedPlaylist;
 use App\OfficialPlaylists\SocialPlaylist;
+use App\OfficialPlaylists\Variant;
+use App\Http\Requests\OfficialPlaylists\AddPlaylistMapRequest;
+use App\Http\Requests\OfficialPlaylists\AddPlaylistOptionRequest;
+use App\Http\Requests\OfficialPlaylists\AddPlaylistVariantRequest;
 use App\Http\Requests\OfficialPlaylists\CreatePlaylistRequest;
 use App\Http\Requests\OfficialPlaylists\UpdatePlaylistRequest;
 use Illuminate\Support\Str;
@@ -284,5 +290,59 @@ class OfficialPlaylistController extends Controller
         ];
 
         return response()->json($output, 200, [], JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Attach an option to the specified ranked playlist.
+     *
+     * @param  \App\Http\Requests\OfficialPlaylists\AddPlaylistOptionRequest  $request
+     * @param  \App\OfficialPlaylists\RankedPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function addOption(AddPlaylistOptionRequest $request, RankedPlaylist $playlist)
+    {
+        $option = Option::where('slug', request('option'))->first();
+
+        $playlist->options()->attach($option);
+        $playlist->touch();
+
+        $route = route('official-playlists.playlists.ranked.edit', $playlist) . '#edit-options';
+        return redirect($route)->with('status', __('Option added!'));
+    }
+
+    /**
+     * Attach a map to the specified social playlist.
+     *
+     * @param  \App\Http\Requests\OfficialPlaylists\AddPlaylistMapRequest  $request
+     * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function addMap(AddPlaylistMapRequest $request, SocialPlaylist $playlist)
+    {
+        $map = Map::where('slug', request('map'))->first();
+
+        $playlist->maps()->attach($map);
+        $playlist->touch();
+
+        $route = route('official-playlists.playlists.social.edit', $playlist) . '#edit-maps';
+        return redirect($route)->with('status', __('Map added!'));
+    }
+
+    /**
+     * Attach a variant to the specified social playlist.
+     *
+     * @param  \App\Http\Requests\OfficialPlaylists\AddPlaylistVariantRequest  $request
+     * @param  \App\OfficialPlaylists\SocialPlaylist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function addVariant(AddPlaylistVariantRequest $request, SocialPlaylist $playlist)
+    {
+        $variant = Variant::where('slug', request('variant'))->first();
+
+        $playlist->variants()->attach($variant);
+        $playlist->touch();
+
+        $route = route('official-playlists.playlists.social.edit', $playlist) . '#edit-variants';
+        return redirect($route)->with('status', __('Variant added!'));
     }
 }
