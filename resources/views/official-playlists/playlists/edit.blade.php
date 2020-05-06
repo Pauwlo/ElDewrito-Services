@@ -111,7 +111,7 @@
 
                     <div class="form-group">
                         <label for="option">{{ __('Options available') }}</label>
-                        <select name="option" id="option" class="select2 form-control @error('option') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}">
+                        <select name="option" id="option" class="select2 form-control @error('option') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
                             <option value=""{{ !old('option') ? ' selected' : '' }}></option>
                             @foreach ($playlist->optionsAvailable() as $option)
                                 <option value="{{ $option->slug }}"{{ (old('option') === $option->slug) ? ' selected' : '' }}>{{ $option->variant->display_name }} on {{ $option->map->display_name }} ({{ $option->variant->file_name }} on {{ $option->map->file_name }})</option>
@@ -155,7 +155,7 @@
 
                     <div class="form-group">
                         <label for="map">{{ __('Maps available') }}</label>
-                        <select name="map" id="map" class="select2 form-control @error('map') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}">
+                        <select name="map" id="map" class="select2 form-control @error('map') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
                             <option value=""{{ !old('map') ? ' selected' : '' }}></option>
                             @foreach ($playlist->mapsAvailable() as $map)
                                 <option value="{{ $map->slug }}"{{ (old('map') === $map->slug) ? ' selected' : '' }}>{{ $map->display_name }} ({{ $map->file_name }})</option>
@@ -194,7 +194,7 @@
 
                     <div class="form-group">
                         <label for="variant">{{ __('Variants available') }}</label>
-                        <select name="variant" id="variant" class="select2 form-control @error('variant') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}">
+                        <select name="variant" id="variant" class="select2 form-control @error('variant') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
                             <option value=""{{ !old('variant') ? ' selected' : '' }}></option>
                             @foreach ($playlist->variantsAvailable() as $variant)
                                 <option value="{{ $variant->slug }}"{{ (old('variant') === $variant->slug) ? ' selected' : '' }}>{{ $variant->display_name }} ({{ $variant->file_name }})</option>

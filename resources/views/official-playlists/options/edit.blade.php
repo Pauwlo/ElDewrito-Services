@@ -23,7 +23,7 @@
 
                 <div class="form-group">
                     <label for="variant">{{ __('Variant') }}</label>
-                    <select name="variant" id="variant" class="select2 form-control @error('variant') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}">
+                    <select name="variant" id="variant" class="select2 form-control @error('variant') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
                         @foreach ($variants as $variant)
                             <option value="{{ $variant->slug }}"{{ (old('variant', $option->variant->slug) === $variant->slug) ? ' selected' : '' }}>{{ $variant->display_name }} ({{ $variant->file_name }})</option>
                         @endforeach
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="map">{{ __('Map') }}</label>
-                    <select name="map" id="map" class="select2 form-control @error('map') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}">
+                    <select name="map" id="map" class="select2 form-control @error('map') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
                         @foreach ($maps as $map)
                             <option value="{{ $map->slug }}"{{ (old('map', $option->map->slug) === $map->slug) ? ' selected' : '' }}>{{ $map->display_name }} ({{ $map->file_name }})</option>
                         @endforeach
