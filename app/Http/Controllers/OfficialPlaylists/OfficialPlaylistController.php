@@ -262,12 +262,41 @@ class OfficialPlaylistController extends Controller
      */
     public function jsonRanked(RankedPlaylist $playlist)
     {
+        $options = [];
+
+        foreach ($playlist->options as $option) {
+            $commands = [];
+
+            foreach ($option->variant->commands as $command) {
+                $commands[] = $command->command;
+            }
+
+            $gametype = [
+                'displayName' => $option->variant->display_name,
+                'typeName' => $option->variant->file_name,
+            ];
+
+            if (count($commands)) {
+                $gametype['commands'] = $commands;
+            }
+
+            $options[] = [
+                'canBeVetoResult' => $option->can_be_veto_result,
+                'map' => [
+                    'displayName' => $option->map->display_name,
+                    'mapName' => $option->map->file_name,
+                ],
+                'gametype' => $gametype,
+            ];
+        }
+
         $output = [
             'serverName' => $playlist->server_name, 
             'serverMessage' => $playlist->message,
             'maxPlayers' => $playlist->max_players,
             'voteMode' => $playlist->vote_mode,
             'numberOfVetos' => $playlist->number_of_revotes,
+            'playlist' => $options,
         ];
 
         return response()->json($output, 200, [], JSON_PRETTY_PRINT);
@@ -281,12 +310,55 @@ class OfficialPlaylistController extends Controller
      */
     public function jsonSocial(SocialPlaylist $playlist)
     {
+        $maps = [];
+        $variants = [];
+
+        foreach ($playlist->maps as $map) {
+            $maps[] = [
+                'displayName' => $map->display_name,
+                'mapName' => $map->file_name
+            ];
+        }
+
+        foreach ($playlist->variants as $variant) {
+            $commands = [];
+            $specificMaps = [];
+
+            foreach ($variant->commands as $command) {
+                $commands[] = $command->command;
+            }
+
+            foreach ($variant->specificMaps as $map) {
+                $specificMaps[] = [
+                    'displayName' => $map->display_name,
+                    'mapName' => $map->file_name,
+                ];
+            }
+
+            $variant = [
+                'displayName' => $variant->display_name,
+                'typeName' => $variant->file_name,
+            ];
+
+            if (count($commands)) {
+                $variant['commands'] = $commands;
+            }
+
+            if (count($specificMaps)) {
+                $variant['specificMaps'] = $specificMaps;
+            }
+
+            $variants[] = $variant;
+        }
+
         $output = [
             'serverName' => $playlist->server_name, 
             'serverMessage' => $playlist->message,
             'maxPlayers' => $playlist->max_players,
             'voteMode' => $playlist->vote_mode,
             'numberOfRevotesAllowed' => $playlist->number_of_revotes,
+            'maps' => $maps,
+            'types' => $variants,
         ];
 
         return response()->json($output, 200, [], JSON_PRETTY_PRINT);
