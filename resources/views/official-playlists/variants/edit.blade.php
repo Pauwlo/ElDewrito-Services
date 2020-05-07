@@ -89,6 +89,45 @@
             @endif
         </div>
     </div>
+
+    <div class="card" id="edit-maps">
+        <div class="card-body">
+            <h4 class="card-title">{{ __('Edit variant specific maps') }}</h4>
+
+            <form method="POST" action="{{ route('official-playlists.variants.maps.add', $variant) }}">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label for="map">{{ __('Maps available') }}</label>
+                    <select name="map" id="map" class="select2 form-control @error('map') is-invalid @enderror" data-placeholder="{{ __('- Select -') }}" required>
+                        <option value=""{{ !old('map') ? ' selected' : '' }}></option>
+                        @foreach ($variant->mapsAvailable() as $map)
+                            <option value="{{ $map->slug }}"{{ (old('map') === $map->slug) ? ' selected' : '' }}>{{ $map->display_name }} ({{ $map->file_name }})</option>
+                        @endforeach
+                    </select>
+                    
+                    @error('map')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                
+                <button type="submit" class="btn btn-primary">{{ __('Add map') }}</button>
+            </form>
+
+            @if (count($variant->specificMaps))
+                <p class="mt-4">{{ __('Maps in the variant:') }}</p>
+
+                <ul>
+                    @foreach ($variant->specificMaps as $map)
+                        <li><a href="{{ route('official-playlists.maps.show', $map) }}">{{ $map->display_name }} ({{ $map->file_name }})</a></li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+    </div>
 </div>
 @endsection
 

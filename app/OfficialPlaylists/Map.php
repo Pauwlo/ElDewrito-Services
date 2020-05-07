@@ -22,7 +22,7 @@ class Map extends Model
      *
      * @var array
      */
-    protected $touches = ['playlists', 'options'];
+    protected $touches = ['playlists', 'options', 'variants'];
 
     /**
      * Get the route key for the model.
@@ -48,5 +48,13 @@ class Map extends Model
     public function options()
     {
         return $this->hasMany(Option::class);
+    }
+
+    /**
+     * The variants that belong to the map.
+     */
+    public function variants()
+    {
+        return $this->belongsToMany(Variant::class);
     }
 }

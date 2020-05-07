@@ -4,10 +4,14 @@ namespace App\Http\Controllers\OfficialPlaylists;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfficialPlaylists\AddVariantCommandRequest;
+use App\Http\Requests\OfficialPlaylists\AddVariantMapRequest;
 use App\Http\Requests\OfficialPlaylists\CreateVariantRequest;
 use App\Http\Requests\OfficialPlaylists\UpdateVariantRequest;
 use App\OfficialPlaylists\Command;
+use App\OfficialPlaylists\Map;
+use App\OfficialPlaylists\RankedPlaylist;
 use App\OfficialPlaylists\Variant;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -129,5 +133,50 @@ class VariantController extends Controller
 
         $route = route('official-playlists.variants.edit', $variant) . '#edit-commands';
         return redirect($route)->with('status', __('Command added!'));
+    }
+
+    /**
+     * Attach a map to the specified variant.
+     *
+     * @param  \App\Http\Requests\OfficialPlaylists\AddVariantMapRequest  $request
+     * @param  \App\OfficialPlaylists\Variant  $variant
+     * @return \Illuminate\Http\Response
+     */
+    public function addMap(AddVariantMapRequest $request, Variant $variant)
+    {
+        $map = Map::where('slug', request('map'))->first();
+
+        /*
+         * Note: Variant specific maps are only relevant to social playlists.
+         * Therefore, we shouldn't touch() the options & ranked playlists
+         * that are using this variant. This would show a "recently updated"
+         * option/ranked playlist for nothing.
+         */
+        $oldOptions = $variant->options;
+
+        $oldRankedPlaylists = RankedPlaylist::whereHas('options', function (Builder $query) use ($oldOptions) {
+            $query->whereIn('option_id', $oldOptions->pluck(['id']));
+        })->get();
+
+        $variant->specificMaps()->attach($map);
+        $variant->touch();
+
+        /*
+         * Now that the options and ranked playlists have been modified,
+         * let's restore them to their previous updated_at timestamp.
+         */
+        foreach ($variant->options()->get() as $key => $option) {
+            $option->updated_at = $oldOptions[$key]->updated_at;
+            $option->save(['timestamps' => false]);
+        }
+
+        $rankedPlaylists = RankedPlaylist::whereIn('id', $oldRankedPlaylists->pluck(['id']))->get();
+        foreach ($rankedPlaylists as $key => $playlist) {
+            $playlist->updated_at = $oldRankedPlaylists[$key]->updated_at;
+            $playlist->save(['timestamps' => false]);
+        }
+
+        $route = route('official-playlists.variants.edit', $variant) . '#edit-maps';
+        return redirect($route)->with('status', __('Specific map added!'));
     }
 }

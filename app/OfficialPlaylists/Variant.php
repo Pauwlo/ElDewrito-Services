@@ -64,6 +64,26 @@ class Variant extends Model
     }
 
     /**
+     * The maps that belong to the variant.
+     */
+    public function specificMaps()
+    {
+        return $this->belongsToMany(Map::class);
+    }
+
+    /**
+     * The maps that do not belong to the variant.
+     */
+    public function mapsAvailable()
+    {
+        $ids = DB::table('map_variant')
+                 ->where('variant_id', $this->id)
+                 ->pluck('map_id');
+
+        return Map::whereNotIn('id', $ids)->get();
+    }
+
+    /**
      * The options that belong to the variant.
      */
     public function options()

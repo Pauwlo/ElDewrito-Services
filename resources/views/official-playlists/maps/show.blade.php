@@ -51,6 +51,16 @@
                             @endforeach
                         </ul>
                     @endif
+
+                    @if (count($map->variants))
+                        <p>Variants including this map:</p>
+
+                        <ul>
+                            @foreach ($map->variants as $variant)
+                                <li><a href="{{ route('official-playlists.variants.show', $variant) }}">{{ $variant->display_name }} ({{ $variant->file_name }})</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="card-header">
