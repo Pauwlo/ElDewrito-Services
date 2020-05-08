@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -56,15 +57,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * Get the user role name.
-     *
+     * 
      * @return string
      */
     public function roleToString()
     {
-        switch($this->role) {
-            case 1:  return __('Official Host');
-            case 2:  return __('Administrator');
-            default: return __('Member');
+        if ($this->hasRole('administrator')) {
+            return __('Administrator');
+        } elseif ($this->hasRole('official-host')) {
+            return __('Official Host');
+        } else {
+            return __('Member');
         }
     }
 }

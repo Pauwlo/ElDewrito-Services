@@ -12,11 +12,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $admin = User::create([
             'name'     => 'Admin',
             'email'    => 'example@domain.com',
-            'role'     => 2,
             'password' => Hash::make('changeme'),
-        ])->markEmailAsVerified();
+        ]);
+
+        $admin->markEmailAsVerified();
+
+        $admin->assignRole('administrator');
     }
 }
