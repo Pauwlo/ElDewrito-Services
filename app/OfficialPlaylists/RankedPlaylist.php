@@ -11,14 +11,14 @@ class RankedPlaylist extends OfficialPlaylist
      *
      * @var string
      */
-    protected $table = 'rankedplaylists';
+    protected $table = 'op_rankedplaylists';
 
     /**
      * The options that belong to the playlist.
      */
     public function options()
     {
-        return $this->belongsToMany(Option::class, 'option_rankedplaylist', 'rankedplaylist_id');
+        return $this->belongsToMany(Option::class, 'op_option_rankedplaylist', 'rankedplaylist_id');
     }
 
     /**
@@ -26,7 +26,7 @@ class RankedPlaylist extends OfficialPlaylist
      */
     public function optionsAvailable()
     {
-        $ids = DB::table('option_rankedplaylist')
+        $ids = DB::table('op_option_rankedplaylist')
                  ->where('rankedplaylist_id', $this->id)
                  ->pluck('option_id');
 

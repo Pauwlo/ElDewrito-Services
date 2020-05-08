@@ -18,6 +18,13 @@ class Map extends Model
     ];
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'op_maps';
+
+    /**
      * The relationships that should be touched on save.
      *
      * @var array
@@ -39,7 +46,7 @@ class Map extends Model
      */
     public function playlists()
     {
-        return $this->belongsToMany(SocialPlaylist::class, 'map_socialplaylist', 'map_id', 'socialplaylist_id');
+        return $this->belongsToMany(SocialPlaylist::class, 'op_map_socialplaylist', 'map_id', 'socialplaylist_id');
     }
 
     /**
@@ -55,6 +62,6 @@ class Map extends Model
      */
     public function variants()
     {
-        return $this->belongsToMany(Variant::class);
+        return $this->belongsToMany(Variant::class, 'op_map_variant');
     }
 }

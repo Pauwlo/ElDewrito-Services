@@ -28,6 +28,13 @@ class Option extends Model
     ];
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'op_options';
+
+    /**
      * The relationships that should be touched on save.
      *
      * @var array
@@ -65,6 +72,6 @@ class Option extends Model
      */
     public function playlists()
     {
-        return $this->belongsToMany(RankedPlaylist::class, 'option_rankedplaylist', 'option_id', 'rankedplaylist_id');
+        return $this->belongsToMany(RankedPlaylist::class, 'op_option_rankedplaylist', 'option_id', 'rankedplaylist_id');
     }
 }

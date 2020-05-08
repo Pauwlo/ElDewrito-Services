@@ -11,14 +11,14 @@ class SocialPlaylist extends OfficialPlaylist
      *
      * @var string
      */
-    protected $table = 'socialplaylists';
+    protected $table = 'op_socialplaylists';
 
     /**
      * The maps that belong to the playlist.
      */
     public function maps()
     {
-        return $this->belongsToMany(Map::class, 'map_socialplaylist', 'socialplaylist_id');
+        return $this->belongsToMany(Map::class, 'op_map_socialplaylist', 'socialplaylist_id');
     }
 
     /**
@@ -26,7 +26,7 @@ class SocialPlaylist extends OfficialPlaylist
      */
     public function variants()
     {
-        return $this->belongsToMany(Variant::class, 'socialplaylist_variant', 'socialplaylist_id');
+        return $this->belongsToMany(Variant::class, 'op_socialplaylist_variant', 'socialplaylist_id');
     }
 
     /**
@@ -34,7 +34,7 @@ class SocialPlaylist extends OfficialPlaylist
      */
     public function mapsAvailable()
     {
-        $ids = DB::table('map_socialplaylist')
+        $ids = DB::table('op_map_socialplaylist')
                  ->where('socialplaylist_id', $this->id)
                  ->pluck('map_id');
 
@@ -46,7 +46,7 @@ class SocialPlaylist extends OfficialPlaylist
      */
     public function variantsAvailable()
     {
-        $ids = DB::table('socialplaylist_variant')
+        $ids = DB::table('op_socialplaylist_variant')
                  ->where('socialplaylist_id', $this->id)
                  ->pluck('variant_id');
 

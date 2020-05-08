@@ -15,6 +15,13 @@ class Command extends Model
         'command',
         'slug',
     ];
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'op_commands';
     
     /**
      * The relationships that should be touched on save.
@@ -38,6 +45,6 @@ class Command extends Model
      */
     public function variants()
     {
-        return $this->belongsToMany(Variant::class);
+        return $this->belongsToMany(Variant::class, 'op_command_variant');
     }
 }

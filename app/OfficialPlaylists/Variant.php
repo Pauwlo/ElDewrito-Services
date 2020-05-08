@@ -19,6 +19,13 @@ class Variant extends Model
     ];
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'op_variants';
+
+    /**
      * The relationships that should be touched on save.
      *
      * @var array
@@ -40,7 +47,7 @@ class Variant extends Model
      */
     public function playlists()
     {
-        return $this->belongsToMany(SocialPlaylist::class, 'socialplaylist_variant', 'variant_id', 'socialplaylist_id');
+        return $this->belongsToMany(SocialPlaylist::class, 'op_socialplaylist_variant', 'variant_id', 'socialplaylist_id');
     }
 
     /**
@@ -48,7 +55,7 @@ class Variant extends Model
      */
     public function commands()
     {
-        return $this->belongsToMany(Command::class);
+        return $this->belongsToMany(Command::class, 'op_command_variant');
     }
 
     /**
@@ -56,7 +63,7 @@ class Variant extends Model
      */
     public function commandsAvailable()
     {
-        $ids = DB::table('command_variant')
+        $ids = DB::table('op_command_variant')
                  ->where('variant_id', $this->id)
                  ->pluck('command_id');
 
@@ -68,7 +75,7 @@ class Variant extends Model
      */
     public function specificMaps()
     {
-        return $this->belongsToMany(Map::class);
+        return $this->belongsToMany(Map::class, 'op_map_variant');
     }
 
     /**
@@ -76,7 +83,7 @@ class Variant extends Model
      */
     public function mapsAvailable()
     {
-        $ids = DB::table('map_variant')
+        $ids = DB::table('op_map_variant')
                  ->where('variant_id', $this->id)
                  ->pluck('map_id');
 
