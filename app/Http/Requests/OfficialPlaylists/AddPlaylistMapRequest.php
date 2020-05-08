@@ -24,7 +24,7 @@ class AddPlaylistMapRequest extends FormRequest
     public function rules()
     {
         return [
-            'map' => 'required|string|exists:maps,slug',
+            'map' => 'required|string|exists:op_maps,slug',
         ];
     }
 

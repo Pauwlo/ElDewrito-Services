@@ -27,7 +27,7 @@ class UpdateVariantRequest extends FormRequest
 
         return [
             'display-name' => 'required|string',
-            'file-name' => "required|string|unique:variants,file_name,$id",
+            'file-name' => "required|string|unique:op_variants,file_name,$id",
         ];
     }
 }

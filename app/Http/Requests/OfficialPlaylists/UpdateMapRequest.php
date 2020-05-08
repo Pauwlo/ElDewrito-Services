@@ -27,7 +27,7 @@ class UpdateMapRequest extends FormRequest
 
         return [
             'display-name' => 'required|string',
-            'file-name' => "required|string|unique:maps,file_name,$id",
+            'file-name' => "required|string|unique:op_maps,file_name,$id",
         ];
     }
 }

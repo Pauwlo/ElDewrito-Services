@@ -25,7 +25,7 @@ class CreateMapRequest extends FormRequest
     {
         return [
             'display-name' => 'required|string',
-            'file-name' => 'required|string|unique:maps,file_name',
+            'file-name' => 'required|string|unique:op_maps,file_name',
         ];
     }
 }

@@ -24,7 +24,7 @@ class AddPlaylistVariantRequest extends FormRequest
     public function rules()
     {
         return [
-            'variant' => 'required|string|exists:variants,slug',
+            'variant' => 'required|string|exists:op_variants,slug',
         ];
     }
 

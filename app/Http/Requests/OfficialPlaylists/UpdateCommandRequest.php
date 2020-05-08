@@ -26,7 +26,7 @@ class UpdateCommandRequest extends FormRequest
         $id = $this->command->id;
 
         return [
-            'command-string' => "required|string|unique:commands,command,$id",
+            'command-string' => "required|string|unique:op_commands,command,$id",
         ];
     }
 }

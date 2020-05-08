@@ -24,7 +24,7 @@ class CreateCommandRequest extends FormRequest
     public function rules()
     {
         return [
-            'command' => 'required|string|unique:commands',
+            'command' => 'required|string|unique:op_commands',
         ];
     }
 }

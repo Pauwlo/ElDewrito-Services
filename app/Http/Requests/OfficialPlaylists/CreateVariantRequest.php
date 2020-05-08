@@ -25,7 +25,7 @@ class CreateVariantRequest extends FormRequest
     {
         return [
             'display-name' => 'required|string',
-            'file-name' => 'required|string|unique:variants,file_name',
+            'file-name' => 'required|string|unique:op_variants,file_name',
         ];
     }
 }

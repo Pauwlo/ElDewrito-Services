@@ -24,7 +24,7 @@ class AddVariantCommandRequest extends FormRequest
     public function rules()
     {
         return [
-            'command' => 'required|string|exists:commands,slug',
+            'command' => 'required|string|exists:op_commands,slug',
         ];
     }
 

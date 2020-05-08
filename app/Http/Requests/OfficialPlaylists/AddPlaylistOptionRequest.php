@@ -24,7 +24,7 @@ class AddPlaylistOptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'option' => 'required|string|exists:options,slug',
+            'option' => 'required|string|exists:op_options,slug',
         ];
     }
 
