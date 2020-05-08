@@ -35,7 +35,7 @@ Route::namespace('OfficialPlaylists')->prefix('official-playlists')->middleware(
         Route::get('{playlist}/edit', 'OfficialPlaylistController@editRanked')->name('official-playlists.playlists.ranked.edit');
         Route::delete('{playlist}', 'OfficialPlaylistController@destroyRanked')->name('official-playlists.playlists.ranked.destroy');
         Route::get('{playlist}/json', 'OfficialPlaylistController@jsonRanked')->name('official-playlists.playlists.ranked.json');
-        Route::put('{playlist}/add', 'OfficialPlaylistController@addOption')->name('official-playlists.playlists.ranked.options.add');
+        Route::put('{playlist}/options/add', 'OfficialPlaylistController@addOption')->name('official-playlists.playlists.ranked.options.add');
     });
 
     Route::prefix('social')->group(function () {
@@ -44,8 +44,8 @@ Route::namespace('OfficialPlaylists')->prefix('official-playlists')->middleware(
         Route::get('{playlist}/edit', 'OfficialPlaylistController@editSocial')->name('official-playlists.playlists.social.edit');
         Route::delete('{playlist}', 'OfficialPlaylistController@destroySocial')->name('official-playlists.playlists.social.destroy');
         Route::get('{playlist}/json', 'OfficialPlaylistController@jsonSocial')->name('official-playlists.playlists.social.json');
-        Route::put('{playlist}/add', 'OfficialPlaylistController@addMap')->name('official-playlists.playlists.social.maps.add');
-        Route::put('{playlist}/add', 'OfficialPlaylistController@addVariant')->name('official-playlists.playlists.social.variants.add');
+        Route::put('{playlist}/maps/add', 'OfficialPlaylistController@addMap')->name('official-playlists.playlists.social.maps.add');
+        Route::put('{playlist}/variants/add', 'OfficialPlaylistController@addVariant')->name('official-playlists.playlists.social.variants.add');
     });
 
     Route::prefix('maps')->group(function () {
@@ -66,8 +66,8 @@ Route::namespace('OfficialPlaylists')->prefix('official-playlists')->middleware(
         Route::get('{variant}/edit', 'VariantController@edit')->name('official-playlists.variants.edit');
         Route::put('{variant}', 'VariantController@update')->name('official-playlists.variants.update');
         Route::delete('{variant}', 'VariantController@destroy')->name('official-playlists.variants.destroy');
-        Route::put('{variant}/add', 'VariantController@addCommand')->name('official-playlists.variants.commands.add');
-        Route::put('{variant}/add', 'VariantController@addMap')->name('official-playlists.variants.maps.add');
+        Route::put('{variant}/commands/add', 'VariantController@addCommand')->name('official-playlists.variants.commands.add');
+        Route::put('{variant}/maps/add', 'VariantController@addMap')->name('official-playlists.variants.maps.add');
     });
 
     Route::prefix('commands')->group(function () {
