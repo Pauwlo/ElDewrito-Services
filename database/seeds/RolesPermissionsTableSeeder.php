@@ -20,5 +20,11 @@ class RolesPermissionsTableSeeder extends Seeder
         $officialHost = Role::create([
             'name' => 'official-host',
         ]);
+
+        $accessOfficialPlaylists = Permission::create([
+            'name' => 'official-playlists.access',
+        ]);
+
+        $officialHost->givePermissionTo($accessOfficialPlaylists);
     }
 }

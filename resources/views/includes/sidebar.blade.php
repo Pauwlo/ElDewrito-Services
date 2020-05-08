@@ -34,17 +34,19 @@
         <ul class="navigation">
             <li{!! (Route::is('home')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('home') }}"><i class="zwicon-home"></i> {{ __('Home') }}</a></li>
 
-            <li class="navigation__sub{!! (Route::is('official-playlists.*')) ? ' navigation__sub--active' : '' !!}">
-                <a href=""><i class="zwicon-server-stack"></i> {{ __('Official Playlists') }}</a>
+            @can('official-playlists.access')
+                <li class="navigation__sub{!! (Route::is('official-playlists.*')) ? ' navigation__sub--active' : '' !!}">
+                    <a href=""><i class="zwicon-server-stack"></i> {{ __('Official Playlists') }}</a>
 
-                <ul>
-                    <li{!! (Route::is('official-playlists.playlists.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.playlists.index') }}">{{ __('Playlists') }}</a></li>
-                    <li{!! (Route::is('official-playlists.maps.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.maps.index') }}">{{ __('Maps') }}</a></li>
-                    <li{!! (Route::is('official-playlists.variants.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.variants.index') }}">{{ __('Variants') }}</a></li>
-                    <li{!! (Route::is('official-playlists.commands.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.commands.index') }}">{{ __('Commands') }}</a></li>
-                    <li{!! (Route::is('official-playlists.options.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.options.index') }}">{{ __('Options') }}</a></li>
-                </ul>
-            </li>
+                    <ul>
+                        <li{!! (Route::is('official-playlists.playlists.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.playlists.index') }}">{{ __('Playlists') }}</a></li>
+                        <li{!! (Route::is('official-playlists.maps.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.maps.index') }}">{{ __('Maps') }}</a></li>
+                        <li{!! (Route::is('official-playlists.variants.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.variants.index') }}">{{ __('Variants') }}</a></li>
+                        <li{!! (Route::is('official-playlists.commands.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.commands.index') }}">{{ __('Commands') }}</a></li>
+                        <li{!! (Route::is('official-playlists.options.*')) ? ' class="navigation__active"' : '' !!}><a href="{{ route('official-playlists.options.index') }}">{{ __('Options') }}</a></li>
+                    </ul>
+                </li>
+            @endcan
 
             <li class="navigation__sub">
                 <a href=""><i class="zwicon-web"></i> {{ __('External links') }}</a>

@@ -23,7 +23,7 @@ Route::namespace('Api')->group(function () {
  * authentication, therefore sharing the same session.
  */
 
-Route::namespace('OfficialPlaylists')->group(function () {
+Route::namespace('OfficialPlaylists')->middleware('permission:official-playlists.access')->group(function () {
 
     Route::get('official-playlists', 'OfficialPlaylistController@index')->name('official-playlists.playlists.index');
     Route::get('official-playlists/create', 'OfficialPlaylistController@create')->name('official-playlists.playlists.create');

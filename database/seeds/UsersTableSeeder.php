@@ -21,5 +21,6 @@ class UsersTableSeeder extends Seeder
         $admin->markEmailAsVerified();
 
         $admin->assignRole('administrator');
+        $admin->assignRole('official-host');
     }
 }
