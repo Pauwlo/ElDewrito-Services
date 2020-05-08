@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
         User::create([
             'name'     => 'Admin',
             'email'    => 'example@domain.com',
-            'role'     => 2,
             'password' => Hash::make('changeme'),
         ])->markEmailAsVerified();
     }
