@@ -54,4 +54,20 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->email_verified_at = null;
         $this->save();
     }
+
+    /**
+     * Get the user role name.
+     * 
+     * @return string
+     */
+    public function roleToString()
+    {
+        if ($this->hasRole('administrator')) {
+            return __('Administrator');
+        } elseif ($this->hasRole('official-host')) {
+            return __('Official Host');
+        } else {
+            return __('Member');
+        }
+    }
 }

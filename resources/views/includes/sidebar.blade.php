@@ -13,7 +13,7 @@
                     <img class="user__img" src="{{ asset('img/avatars/' . (auth()->user()->avatar ?? 'default.png')) }}" alt="{{ __('Avatar') }}">
                     <div>
                         <div class="user__name">{{ auth()->user()->name }}</div>
-                        <div class="user__email">{{ auth()->user()->email }}</div>
+                        <div class="user__email">{{ auth()->user()->roleToString() }}</div>
                     </div>
                 </div>
 

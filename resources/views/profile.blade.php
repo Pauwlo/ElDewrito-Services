@@ -36,6 +36,7 @@
 
             <p class="mt-3 mb-0">
                 <strong>{{ $user->name }}</strong><br>
+                <span class="text-muted">{{ $user->roleToString() }}</span>
                 @error('avatar')
                     <strong class="invalid-feedback d-block">
                         {{ $message }}
