@@ -25,6 +25,14 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            'discord' => [
+                'nullable',
+                'string',
+                'min:2',
+                'max:32',
+                'lowercase',
+                'regex:/^(?!.*?\.{2,})[a-z0-9_\.]{2,32}$/i',
+            ],
         ];
     }
 }

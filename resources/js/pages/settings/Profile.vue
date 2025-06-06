@@ -31,6 +31,7 @@ const user = page.props.auth.user as User;
 const form = useForm({
     name: user.name,
     email: user.email,
+    discord: user.discord,
 });
 
 const submit = () => {
@@ -46,7 +47,7 @@ const submit = () => {
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="Profile information" description="Update your name and email address" />
+                <HeadingSmall title="Profile information" description="Update your name and contact info" />
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
@@ -85,6 +86,12 @@ const submit = () => {
                         <div v-if="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
                             A new verification link has been sent to your email address.
                         </div>
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="discord">Discord</Label>
+                        <Input id="discord" class="mt-1 block w-full" v-model="form.discord" placeholder="Discord username" />
+                        <InputError class="mt-2" :message="form.errors.discord" />
                     </div>
 
                     <div class="flex items-center gap-4">
