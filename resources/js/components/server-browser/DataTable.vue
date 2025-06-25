@@ -6,6 +6,7 @@ import type {
 import {
     FlexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getSortedRowModel,
     useVueTable,
 } from '@tanstack/vue-table';
@@ -18,6 +19,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { valueUpdater } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
 import { ref } from 'vue';
 
 const props = defineProps<{
@@ -29,19 +31,31 @@ const sorting = ref<SortingState>([
     { id: 'numPlayers', desc: true } // Sort by number of players descending by default
 ]);
 
+const columnFilters = ref<ColumnFiltersState>([])
+
 const table = useVueTable({
     get data() { return props.data },
     get columns() { return props.columns },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+    onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
         get sorting() { return sorting.value },
+        get columnFilters() { return columnFilters.value },
     },
 });
 </script>
 
 <template>
+
+    <!--<div class="flex items-center py-4">
+        <Input class="max-w-sm rounded-none" placeholder="Filter servers..."
+               :model-value="table.getColumn('name')?.getFilterValue() as string"
+               @update:model-value=" table.getColumn('name')?.setFilterValue($event)" />
+    </div>-->
+
     <Table class="text-md">
         <TableHeader class="border-b-2">
             <TableRow
@@ -76,7 +90,7 @@ const table = useVueTable({
             <template v-else>
                 <TableRow>
                     <TableCell :colspan="columns.length" class="h-24 text-center">
-                        No servers online. big rip?
+                        No servers.
                     </TableCell>
                 </TableRow>
             </template>

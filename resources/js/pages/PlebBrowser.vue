@@ -123,4 +123,8 @@ onMounted(async () => {
 :root {
     --background: var(--bulma-body-background-color);
 }
+
+html.dark {
+    --background: var(--bulma-body-background-color-dark);
+}
 </style>
