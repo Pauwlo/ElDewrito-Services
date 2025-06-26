@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import ServerBrowser from '@/components/server-browser/ServerBrowser.vue';
-import { ElDewritoServer } from '@/models/ElDewritoServer';
 import { ValidationError } from '@/exceptions/ValidationError';
+import { ElDewritoServer } from '@/models/ElDewritoServer';
 import { Head } from '@inertiajs/vue3';
 import 'bulma/css/bulma.min.css';
+import 'highcharts/css/highcharts.css';
+import { Chart } from 'highcharts-vue';
 import { onMounted, ref } from 'vue';
 
 interface Props {
@@ -18,6 +20,34 @@ const servers = ref<ElDewritoServer[]>([]);
 
 const showBrowser = ref(false);
 const browserStatus = ref('Loading...');
+
+const statsStatus = ref('Loading...');
+const chartOptions = ref({
+    chart: {
+        styledMode: true,
+        zoomType: 'x',
+    },
+    credits: {
+        enabled: false,
+    },
+    title: {
+        text: null,
+    },
+    xAxis: {
+        type: 'datetime',
+    },
+    yAxis: {
+        title: {
+            text: null,
+        },
+    },
+    legend: {
+        enabled: false,
+    },
+    time: {
+        useUTC: false,
+    },
+});
 
 function fetchPlebBrowser() {
     fetch(props.plebBrowserApi)
@@ -65,7 +95,7 @@ function fetchPlebBrowser() {
             });
 
             serverArray.value = [];
-            serverArray.forEach(serverData => {
+            serverArray.forEach((serverData) => {
                 try {
                     const server = new ElDewritoServer(serverData);
                     servers.value.push(server);
@@ -94,14 +124,49 @@ function updateCounts(count) {
     browserStatus.value = `${playerCount.value} players on ${serverCount.value} servers.${rip}`;
 }
 
+function fetchStats() {
+    fetch(`${props.plebBrowserApi}/stats`)
+        .then((response) => response.json())
+        .then((data) => {
+            chartOptions.value.series = [
+                {
+                    name: 'Players',
+                    data: data.players,
+                    turboThreshold: 10000,
+                    marker: {
+                        enabled: false
+                    },
+                },
+                {
+                    name: 'Servers',
+                    data: data.servers,
+                    turboThreshold: 10000,
+                    marker: {
+                        enabled: false
+                    },
+                },
+            ];
+
+            statsStatus.value = '';
+        })
+        .catch((error) => {
+            statsStatus.value = 'Whoops, something bad happened.';
+            console.error(error);
+        });
+}
+
 onMounted(async () => {
     fetchPlebBrowser();
+    fetchStats();
 });
 </script>
 
 <template>
     <Head title="PlebBrowser">
-        <meta name="description" content="Find and join ElDewrito servers with the server browser. Play unique maps, game modes, and mods from the community."/>
+        <meta
+            name="description"
+            content="Find and join ElDewrito servers with the server browser. Play unique maps, game modes, and mods from the community."
+        />
     </Head>
 
     <section class="section">
@@ -110,11 +175,13 @@ onMounted(async () => {
             <p class="subtitle is-spaced">{{ browserStatus }}</p>
 
             <div class="table-container">
-                <ServerBrowser v-if="showBrowser" :servers="servers"/>
+                <ServerBrowser v-if="showBrowser" :servers="servers" />
             </div>
 
             <h2 class="title is-3">Stats</h2>
-            <p class="subtitle">Temporarily unavailable.</p>
+            <p class="subtitle">{{ statsStatus }}</p>
+
+            <Chart v-if="chartOptions.series" :options="chartOptions"></Chart>
         </div>
     </section>
 </template>
@@ -122,5 +189,11 @@ onMounted(async () => {
 <style>
 :root {
     --background: var(--bulma-body-background-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --highcharts-background-color: #14161a;
+    }
 }
 </style>
