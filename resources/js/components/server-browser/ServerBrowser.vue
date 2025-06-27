@@ -96,7 +96,7 @@ const columns: ColumnDef<ElDewritoServer>[] = [
     },
 ]
 
-const showAdultsOnly = ref(false);
+//const showAdultsOnly = ref(false);
 
 </script>
 
