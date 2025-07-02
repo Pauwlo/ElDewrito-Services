@@ -24,7 +24,7 @@ const columns: ColumnDef<ElDewritoServer>[] = [
             h('span', { class: 'font-bold!' }, row.getValue('name')),
             h(ModsCard, {
                 mods: row.original.mods,
-                jsonUrl: `http://${row.original.ip}/mods}`,
+                jsonUrl: `http://${row.original.ip}/mods`,
             }),
         ]),
     },
