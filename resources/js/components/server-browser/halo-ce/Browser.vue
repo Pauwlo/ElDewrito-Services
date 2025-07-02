@@ -40,17 +40,13 @@ let resizeTimeout;
 
 function shouldAddRows() {
     const row = document.querySelectorAll('tbody tr')[1];
-    console.log(row)
 
     if (!row) {
         return true;
     }
 
-    console.log(paginationButton, row)
     const a = paginationButton.value.offsetHeight;
     const b = row.offsetHeight;
-
-    console.log(a,b)
 
     return a <= b;
 }
