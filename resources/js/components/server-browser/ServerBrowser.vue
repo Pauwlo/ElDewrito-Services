@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { ElDewritoServer } from '@/models/ElDewritoServer';
 import DataTable from '@/components/server-browser/DataTable.vue';
+import ModsCard from '@/components/server-browser/ModsCard.vue';
 import { Button } from '@/components/ui/button';
 import { ArrowUpDown, ExternalLink } from 'lucide-vue-next';
-import { h, ref } from 'vue';
+import { h } from 'vue';
 
 interface Props {
     servers: ElDewritoServer[];
@@ -19,7 +20,13 @@ const columns: ColumnDef<ElDewritoServer>[] = [
                 onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
             }, () => ['Name', h(ArrowUpDown, { size: 14 })])
         },
-        cell: ({ row }) => h('span', { class: 'font-bold!' }, row.getValue('name')),
+        cell: ({ row }) => h('div', { class: 'md:whitespace-nowrap' }, [
+            h('span', { class: 'font-bold!' }, row.getValue('name')),
+            h(ModsCard, {
+                mods: row.original.mods,
+                jsonUrl: `http://${row.original.ip}/mods}`,
+            }),
+        ]),
     },
     {
         accessorKey: 'hostPlayer',

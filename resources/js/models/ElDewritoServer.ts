@@ -29,6 +29,7 @@ export class ElDewritoServer {
     isDedicated: boolean;
     gameVersion: string;
     eldewritoVersion: string;
+    mods?: array;
 
     adultsOnly: boolean;
     eldewritoVersionShort: string;
@@ -68,9 +69,21 @@ export class ElDewritoServer {
         eldewritoVersionShort: string;
         firstSeenAt: string;
         reverseDns?: string;
+        mods?: object;
     }) {
         ElDewritoServer.validate(data);
         Object.assign(this, data);
+
+        if (typeof data.mods === 'object') {
+            this.mods = [];
+
+            Object.entries(data.mods).forEach(([id, data]) => {
+                this.mods.push({
+                    id: id,
+                    ...data,
+                });
+            });
+        }
     }
 
     static validate(data: any): void {
@@ -114,6 +127,7 @@ export class ElDewritoServer {
             ['eldewritoVersionShort', typeof data.eldewritoVersionShort === 'string'],
             ['firstSeenAt', typeof data.firstSeenAt === 'string'],
             ['reverseDns', typeof data.reverseDns === 'undefined' || typeof data.reverseDns === 'string'],
+            ['mods', typeof data.mods === 'undefined' || typeof data.mods === 'object'],
         ];
 
         for (const [field, passed] of rules) {

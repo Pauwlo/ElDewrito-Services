@@ -94,6 +94,7 @@ function fetchPlebBrowser() {
                     firstSeenAt: server.firstSeenAt,
                     eldewritoVersionShort: server.eldewritoVersionShort,
                     reverseDns: server.reverseDns,
+                    mods: server.mods,
                 });
             });
 
