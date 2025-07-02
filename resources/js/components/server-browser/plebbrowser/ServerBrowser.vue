@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ElDewritoServer } from '@/models/ElDewritoServer';
-import DataTable from '@/components/server-browser/DataTable.vue';
-import ModsCard from '@/components/server-browser/ModsCard.vue';
+import DataTable from '@/components/server-browser/plebbrowser/DataTable.vue';
+import ModsCard from '@/components/server-browser/plebbrowser/ModsCard.vue';
 import { Button } from '@/components/ui/button';
 import { ArrowUpDown, ExternalLink } from 'lucide-vue-next';
 import { h } from 'vue';

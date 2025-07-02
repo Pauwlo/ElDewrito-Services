@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ServerBrowser;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ServerBrowserController extends Controller
@@ -12,9 +13,17 @@ class ServerBrowserController extends Controller
      * Fetches data from the legacy PlebBrowser API.
      * TODO: Implement local cache
      */
-    public function index(): \Inertia\Response
+    public function index(Request $request): \Inertia\Response
     {
-        return Inertia::render('PlebBrowser', [
+        $theme = $request->get('theme', 'plebbrowser');
+
+        $view = match ($theme) {
+            'plebbrowser' => 'PlebBrowser',
+            'halo-ce' => 'HaloCE',
+            default => 'PlebBrowser',
+        };
+
+        return Inertia::render("server-browser/$view", [
             'plebBrowserApi' => config('eldewrito.plebbrowser_api'),
         ]);
     }
