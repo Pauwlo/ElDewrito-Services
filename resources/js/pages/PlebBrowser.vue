@@ -23,6 +23,9 @@ const browserStatus = ref('Loading...');
 
 const statsStatus = ref('Loading...');
 const chartOptions = ref({
+    accessibility: {
+        enabled: false,
+    },
     chart: {
         styledMode: true,
         zoomType: 'x',
