@@ -28,7 +28,7 @@ const size = (bytes) => {
 <template>
     <HoverCard v-if="mods?.length > 0">
         <HoverCardTrigger as-child>
-            <Package class="ml-2 inline opacity-40 hover:opacity-60"/>
+            <Package :size="18" class="ml-2 inline opacity-40 hover:opacity-60"/>
         </HoverCardTrigger>
         <HoverCardContent class="w-90 p-0 bg-background/80 dark:bg-background/90 backdrop-blur-xs">
             <ScrollArea class="h-48 w-full">
